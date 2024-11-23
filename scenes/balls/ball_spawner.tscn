@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://udh5o1p8l33m"]
+
+[ext_resource type="Script" path="res://scripts/balls/ball_spawner.gd" id="1_7c7c8"]
+[ext_resource type="PackedScene" uid="uid://drddx10tdx7vc" path="res://scenes/balls/ball.tscn" id="2_ntamy"]
+
+[node name="BallSpawner" type="Node2D"]
+script = ExtResource("1_7c7c8")
+balls = 20
+
+[node name="Ball" parent="." instance=ExtResource("2_ntamy")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
