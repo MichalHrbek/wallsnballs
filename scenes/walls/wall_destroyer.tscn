@@ -1,16 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4a2uigga1pqs"]
+[gd_scene load_steps=3 format=3 uid="uid://dysoevgnd670f"]
 
-[ext_resource type="Script" path="res://scripts/walls/wall_barrier.gd" id="1_yxdl8"]
+[ext_resource type="Script" path="res://scripts/walls/wall_destroyer.gd" id="1_tkkvi"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_y5xfj"]
 b = Vector2(0, 1)
 
-[node name="Barrier" type="StaticBody2D"]
+[node name="Destroyer" type="StaticBody2D"]
 collision_layer = 5
 collision_mask = 3
 input_pickable = true
-script = ExtResource("1_yxdl8")
-health = -1
+script = ExtResource("1_tkkvi")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

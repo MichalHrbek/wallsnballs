@@ -16,3 +16,6 @@ func _physics_process(delta):
 		#print(result)
 	else:
 		global_position = goal
+
+func destroy():
+	queue_free()

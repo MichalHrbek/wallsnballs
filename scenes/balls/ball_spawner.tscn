@@ -5,10 +5,16 @@
 
 [node name="BallSpawner" type="Node2D"]
 script = ExtResource("1_7c7c8")
-balls = 20
 
 [node name="Ball" parent="." instance=ExtResource("2_ntamy")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 3
+points = PackedVector2Array(0, 0, 0, 0, 0, 0)
+default_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+texture_mode = 1
+joint_mode = 2

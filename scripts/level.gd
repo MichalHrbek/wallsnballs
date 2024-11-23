@@ -1,26 +1,35 @@
 class_name Level extends Node2D
 
 @export var lvl: LevelRes
+@export var ball_spawner: BallSpawner
 var brick_size: float
 var brick_scale: float
 
 var wall_scene = preload("res://scenes/walls/wall_default.tscn")
 var barrier_scene = preload("res://scenes/walls/wall_barrier.tscn")
+var destroyer_scene = preload("res://scenes/walls/wall_destroyer.tscn")
 var walls: Array[Wall] = []
 
 func _ready():
 	# World borders
 	var left = barrier_scene.instantiate()
 	var right = barrier_scene.instantiate()
-	var top: Wall = barrier_scene.instantiate()
+	var top = barrier_scene.instantiate()
+	var bottom = destroyer_scene.instantiate()
 	top.rotation_degrees = -90
+	bottom.rotation_degrees = -90
 	right.position.x = get_viewport_rect().size.x
 	left.scale.y = get_viewport_rect().size.y
 	right.scale.y = get_viewport_rect().size.y
 	top.scale.y = get_viewport_rect().size.y
+	bottom.scale.y = get_viewport_rect().size.y
+	bottom.position.y = get_viewport_rect().size.y
 	add_child(left)
 	add_child(right)
 	add_child(top)
+	add_child(bottom)
+	if ball_spawner:
+		bottom.sent_back.connect(ball_spawner.return_ball)
 	
 	# Spawning bricks
 	brick_size = get_viewport_rect().size.x / lvl.width
@@ -42,3 +51,6 @@ func _ready():
 
 func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
+
+func next_round():
+	pass

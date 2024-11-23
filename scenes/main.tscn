@@ -9,31 +9,37 @@
 script = ExtResource("3_dg4ad")
 health = 16
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_3amn2"]
 script = ExtResource("3_dg4ad")
 health = 5
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_id7uf"]
 script = ExtResource("3_dg4ad")
 health = 32
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_p05ky"]
 script = ExtResource("3_dg4ad")
 health = 16
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_3jl61"]
 script = ExtResource("3_dg4ad")
 health = 16
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_c61r8"]
 script = ExtResource("3_dg4ad")
 health = 16
 type = 0
+orientation = 0
 
 [sub_resource type="Resource" id="Resource_d0c8n"]
 script = ExtResource("2_1frv6")
@@ -44,9 +50,12 @@ walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_cr71n"), SubResourc
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Level" type="Node2D" parent="."]
+[node name="BallSpawner" parent="." node_paths=PackedStringArray("level") instance=ExtResource("4_125qf")]
+position = Vector2(604, 622)
+level = NodePath("../Level")
+n_balls = 25
+
+[node name="Level" type="Node2D" parent="." node_paths=PackedStringArray("ball_spawner")]
 script = ExtResource("1_7f4c8")
 lvl = SubResource("Resource_d0c8n")
-
-[node name="BallSpawner" parent="." instance=ExtResource("4_125qf")]
-position = Vector2(604, 622)
+ball_spawner = NodePath("../BallSpawner")
