@@ -29,7 +29,7 @@ func _ready():
 	add_child(top)
 	add_child(bottom)
 	if ball_spawner:
-		bottom.sent_back.connect(ball_spawner.return_ball)
+		bottom.sent_back.connect(ball_spawner.on_return_ball)
 	
 	# Spawning bricks
 	brick_size = get_viewport_rect().size.x / lvl.width

@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_cr71n"]
 script = ExtResource("3_dg4ad")
-health = 16
+health = 25
 type = 0
 orientation = 0
 

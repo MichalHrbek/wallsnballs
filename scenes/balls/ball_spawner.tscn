@@ -6,11 +6,10 @@
 [node name="BallSpawner" type="Node2D"]
 script = ExtResource("1_7c7c8")
 
-[node name="Ball" parent="." instance=ExtResource("2_ntamy")]
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.05
-one_shot = true
+[node name="StartBall" parent="." node_paths=PackedStringArray("sender") instance=ExtResource("2_ntamy")]
+modulate = Color(0.913725, 0.729412, 0.27451, 1)
+speed = 7500.0
+sender = NodePath("..")
 
 [node name="Line2D" type="Line2D" parent="."]
 texture_repeat = 3
