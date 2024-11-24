@@ -60,4 +60,6 @@ func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
-	pass
+	for i in walls:
+		if i:
+			i.position.y += brick_size

@@ -3,7 +3,7 @@ class_name Wall extends StaticBody2D
 signal destroyed
 
 @export var health: int
-@export var orientation: WallRes.WallOrientation = 0:
+@export var orientation: WallRes.WallOrientation = WallRes.WallOrientation.NONE:
 	set(value):
 		orientation = value
 		_on_orientation_set()

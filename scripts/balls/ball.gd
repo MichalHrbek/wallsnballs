@@ -27,7 +27,8 @@ func _physics_process(delta):
 
 var end_pos: Vector2
 func destroy():
-	end_pos = position
-	_destroyed = true
-	_anim.play("ball_return")
-	_anim.animation_finished.connect(queue_free.unbind(1))
+	if not _destroyed:
+		end_pos = position
+		_destroyed = true
+		_anim.play("ball_return")
+		_anim.animation_finished.connect(queue_free.unbind(1))

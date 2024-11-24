@@ -1,10 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://dle7lmca52cus"]
+[gd_scene load_steps=8 format=3 uid="uid://dle7lmca52cus"]
 
 [ext_resource type="Script" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0ls"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
+
+[sub_resource type="Animation" id="Animation_s0buq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7fleg"]
+_data = {
+"RESET": SubResource("Animation_s0buq")
+}
+
+[sub_resource type="Animation" id="Animation_1ifnt"]
+resource_name = "hit_effect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.2, 1.2, 1.2, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fktsc"]
+_data = {
+"hit_effect": SubResource("Animation_1ifnt")
+}
 
 [node name="Wall" type="StaticBody2D"]
 collision_mask = 3
@@ -13,6 +54,7 @@ script = ExtResource("1_m0mka")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_yj0ls")
 
@@ -31,3 +73,9 @@ text = "0"
 label_settings = SubResource("LabelSettings_npei6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7fleg"),
+"walls": SubResource("AnimationLibrary_fktsc")
+}

@@ -2,7 +2,8 @@ extends Wall
 
 signal sent_back(ball: Ball)
 
-func hit(_source) -> bool:
-	sent_back.emit(_source)
-	_source.destroy()
+func hit(source) -> bool:
+	if source is Ball:
+		sent_back.emit(source)
+		source.destroy()
 	return true

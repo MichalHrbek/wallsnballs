@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://oknw64hylf1x"]
+[gd_scene load_steps=5 format=3 uid="uid://oknw64hylf1x"]
 
 [ext_resource type="Script" path="res://scripts/walls/wall_slanted.gd" id="1_hw216"]
+[ext_resource type="AnimationLibrary" uid="uid://bl11vd2ibwu2w" path="res://animations/walls.res" id="2_sedtv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 font_size = 13
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qaxr7"]
 
 [node name="WallSlanted" type="StaticBody2D"]
 collision_mask = 3
@@ -34,3 +37,9 @@ text = "0"
 label_settings = SubResource("LabelSettings_npei6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qaxr7"),
+"walls": ExtResource("2_sedtv")
+}
