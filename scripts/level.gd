@@ -4,16 +4,19 @@ class_name Level extends Node2D
 @export var ball_spawner: BallSpawner
 var brick_size: float
 var brick_scale: float
-
-var _wall_scene = preload("res://scenes/walls/wall_default.tscn")
-var _slanted_scene = preload("res://scenes/walls/wall_slanted.tscn")
-var _barrier_scene = preload("res://scenes/walls/wall_barrier.tscn")
-var _destroyer_scene = preload("res://scenes/walls/wall_destroyer.tscn")
-var _plus_one_scene = preload("res://scenes/walls/wall_plus_one.tscn")
 var walls: Array[Wall] = []
 
-@onready var _walls_group = $Walls
+const _wall_scenes = {
+	WallRes.WallType.NORMAL: preload("res://scenes/walls/wall_default.tscn"),
+	WallRes.WallType.SLANTED: preload("res://scenes/walls/wall_slanted.tscn"),
+	WallRes.WallType.PLUS_ONE: preload("res://scenes/walls/wall_plus_one.tscn"),
+	WallRes.WallType.LASER: preload("res://scenes/walls/wall_laser.tscn"),
+}
+const _barrier_scene = preload("res://scenes/walls/wall_barrier.tscn")
+const _destroyer_scene = preload("res://scenes/walls/wall_destroyer.tscn")
 const _slide_duration: float = 0.3
+
+@onready var _walls_group = $Walls
 
 func _ready():
 	# World borders
@@ -45,11 +48,7 @@ func _ready():
 			var wall_res = lvl.walls[index]
 			walls.append(null)
 			if wall_res:
-				var node: Wall
-				if wall_res.type == WallRes.WallType.NORMAL: node = _wall_scene.instantiate()
-				elif wall_res.type == WallRes.WallType.SLANTED: node = _slanted_scene.instantiate()
-				elif wall_res.type == WallRes.WallType.PLUS_ONE: node = _plus_one_scene.instantiate()
-					
+				var node: Wall = _wall_scenes[wall_res.type].instantiate()
 				if node:
 					node.apply_scale(Vector2(brick_scale,brick_scale))
 					node.position += Vector2(brick_size*(j+0.5),brick_size*(i+0.5))
