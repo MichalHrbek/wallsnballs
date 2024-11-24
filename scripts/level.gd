@@ -11,6 +11,9 @@ var barrier_scene = preload("res://scenes/walls/wall_barrier.tscn")
 var destroyer_scene = preload("res://scenes/walls/wall_destroyer.tscn")
 var walls: Array[Wall] = []
 
+@onready var _walls_group = $Walls
+const _slide_duration: float = 0.3
+
 func _ready():
 	# World borders
 	var left = barrier_scene.instantiate()
@@ -52,7 +55,7 @@ func _ready():
 					node.health = wall_res.health
 					node.level = self
 					node.orientation = wall_res.orientation
-					add_child(node)
+					_walls_group.add_child(node)
 					walls[index] = node
 					node.destroyed.connect(_on_wall_destroyed.bind(node,index))
 
@@ -60,6 +63,5 @@ func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
-	for i in walls:
-		if i:
-			i.position.y += brick_size
+	var tween = get_tree().create_tween()
+	tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,brick_size), _slide_duration)

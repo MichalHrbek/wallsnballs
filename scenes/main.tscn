@@ -71,3 +71,5 @@ n_balls = 25
 script = ExtResource("1_7f4c8")
 lvl = SubResource("Resource_d0c8n")
 ball_spawner = NodePath("../BallSpawner")
+
+[node name="Walls" type="Node2D" parent="Level"]

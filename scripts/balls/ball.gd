@@ -5,9 +5,8 @@ class_name Ball extends StaticBody2D
 @export_flags_2d_physics var mask: int = 1
 @export var direction = Vector2(0,0)
 # For animating balls returning to their origin
-@export var return_progress: float = 0
+@export var return_duration: float = 0.3
 var _destroyed = false
-@onready var _anim: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta):
 	if not _destroyed:
@@ -22,13 +21,12 @@ func _physics_process(delta):
 			#print(result)
 		else:
 			global_position = goal
-	else:
-		position = end_pos.lerp(sender.start_ball.position, return_progress)
 
 var end_pos: Vector2
 func destroy():
 	if not _destroyed:
 		end_pos = position
 		_destroyed = true
-		_anim.play("ball_return")
-		_anim.animation_finished.connect(queue_free.unbind(1))
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position", sender.start_ball.position, return_duration)
+		tween.tween_callback(queue_free)

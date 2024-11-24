@@ -72,6 +72,7 @@ func reset():
 	balls_returned = 0
 	_started_shooting = false
 	line.visible = true
+	_update_label()
 	if level:
 		level.next_round()
 
