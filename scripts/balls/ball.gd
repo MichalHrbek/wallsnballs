@@ -14,10 +14,8 @@ func _physics_process(delta):
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(global_position, goal, mask)
 		var result = space_state.intersect_ray(query)
-		if result:
-			if result.collider is Wall:
-				if result.collider.hit(self):
-					direction = direction.bounce(result.normal)
+		if result and result.collider is Wall and result.collider.hit(self):
+			direction = direction.bounce(result.normal)
 			#print(result)
 		else:
 			global_position = goal

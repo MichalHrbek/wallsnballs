@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://djkfq8mcu50q8"]
+
+[ext_resource type="Script" path="res://scripts/walls/wall_plus_one.gd" id="1_ds35h"]
+[ext_resource type="Texture2D" uid="uid://dbjecd6eknr0s" path="res://assets/ball.svg" id="2_q7qtj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jwhq"]
+radius = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_npei6"]
+
+[node name="PlusOne" type="StaticBody2D"]
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_ds35h")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6jwhq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_q7qtj")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+label_settings = SubResource("LabelSettings_npei6")
+horizontal_alignment = 1
+vertical_alignment = 1

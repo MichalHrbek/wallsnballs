@@ -8,8 +8,9 @@ class_name BallSpawner extends Node2D
 @onready var label_anchor = $LabelAnchor
 @export var level: Level
 @export var n_balls: int = 1
-var balls_shot: int = 0
+@onready var balls_left: int = n_balls
 var balls_returned: int = 0
+var balls_fired: int = 0
 var _started_shooting: bool = false
 var _direction: Vector2
 var _deployed: Array[Ball] = []
@@ -22,9 +23,10 @@ func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 
 func _process(delta):
 	timer += delta
-	if _started_shooting and timer>=wait_time and balls_shot < n_balls:
+	if _started_shooting and timer>=wait_time and balls_left > 0:
 		# Firing the balls
-		balls_shot += 1
+		balls_left -= 1
+		balls_fired += 1
 		var ball: Ball = start_ball.duplicate()
 		ball.direction = _direction
 		_deployed.append(ball)
@@ -56,7 +58,7 @@ func on_return_ball(ball: Ball):
 	if balls_returned == 0:
 		start_ball.global_position.x = ball.global_position.x
 	balls_returned += 1
-	if balls_returned == n_balls:
+	if balls_left == 0 and balls_returned == balls_fired:
 		reset()
 	_update_label()
 
@@ -68,8 +70,9 @@ func recall():
 
 func reset():
 	_deployed = []
-	balls_shot = 0
+	balls_left = n_balls
 	balls_returned = 0
+	balls_fired = 0
 	_started_shooting = false
 	line.visible = true
 	_update_label()
@@ -82,7 +85,11 @@ func _ready():
 
 func _update_label():
 	label_anchor.position = start_ball.position
-	label.text = "%d/%d" % [n_balls+balls_returned-balls_shot, n_balls]
+	label.text = "%d/%d" % [n_balls-balls_fired+balls_returned, n_balls]
 
 func add_temp_ball(ball: Ball):
 	_deployed.append(ball)
+
+func add_ball():
+	n_balls += 1
+	_update_label()
