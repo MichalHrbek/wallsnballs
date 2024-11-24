@@ -52,8 +52,7 @@ func _input(event):
 
 func on_return_ball(ball: Ball):
 	if balls_returned == 0:
-		start_ball.global_position = ball.global_position
-		start_ball.global_position.y -= 10
+		start_ball.global_position.x = ball.global_position.x
 	balls_returned += 1
 	if balls_returned == n_balls:
 		reset()

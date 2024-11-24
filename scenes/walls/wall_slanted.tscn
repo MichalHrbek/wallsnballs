@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://oknw64hylf1x"]
+
+[ext_resource type="Script" path="res://scripts/walls/wall_slanted.gd" id="1_hw216"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_npei6"]
+font_size = 13
+
+[node name="WallSlanted" type="StaticBody2D"]
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_hw216")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(40, 40)
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, -0.5, 0.5)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(1.9, 1.9)
+color = Color(0.345098, 0.462745, 0.556863, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, -10, 10)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_npei6")
+horizontal_alignment = 1
+vertical_alignment = 1

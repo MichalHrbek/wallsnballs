@@ -7,6 +7,7 @@ class_name Ball extends StaticBody2D
 # For animating balls returning to their origin
 @export var return_progress: float = 0
 var _destroyed = false
+@onready var _anim: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta):
 	if not _destroyed:
@@ -28,5 +29,5 @@ var end_pos: Vector2
 func destroy():
 	end_pos = position
 	_destroyed = true
-	$AnimationPlayer.play("ball_return")
-	#queue_free()
+	_anim.play("ball_return")
+	_anim.animation_finished.connect(queue_free.unbind(1))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=14 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7f4c8"]
 [ext_resource type="Script" path="res://resources/level_res.gd" id="2_1frv6"]
@@ -23,6 +23,18 @@ health = 32
 type = 0
 orientation = 0
 
+[sub_resource type="Resource" id="Resource_j1cl4"]
+script = ExtResource("3_dg4ad")
+health = 16
+type = 1
+orientation = 2
+
+[sub_resource type="Resource" id="Resource_rchaf"]
+script = ExtResource("3_dg4ad")
+health = 32
+type = 1
+orientation = 4
+
 [sub_resource type="Resource" id="Resource_p05ky"]
 script = ExtResource("3_dg4ad")
 health = 16
@@ -46,7 +58,7 @@ script = ExtResource("2_1frv6")
 name = ""
 width = 16
 height = 6
-walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_cr71n"), SubResource("Resource_3amn2"), null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_id7uf"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_p05ky"), null, null, null, SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_3jl61"), SubResource("Resource_c61r8")])
+walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_cr71n"), SubResource("Resource_3amn2"), null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_id7uf"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_j1cl4"), SubResource("Resource_rchaf"), null, null, null, null, SubResource("Resource_p05ky"), null, null, null, SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_3jl61"), SubResource("Resource_c61r8")])
 
 [node name="Node2D" type="Node2D"]
 
