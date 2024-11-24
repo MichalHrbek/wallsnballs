@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://udh5o1p8l33m"]
+[gd_scene load_steps=4 format=3 uid="uid://udh5o1p8l33m"]
 
 [ext_resource type="Script" path="res://scripts/balls/ball_spawner.gd" id="1_7c7c8"]
 [ext_resource type="PackedScene" uid="uid://drddx10tdx7vc" path="res://scenes/balls/ball.tscn" id="2_ntamy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4otp"]
+font_size = 64
 
 [node name="BallSpawner" type="Node2D"]
 script = ExtResource("1_7c7c8")
 
 [node name="StartBall" parent="." node_paths=PackedStringArray("sender") instance=ExtResource("2_ntamy")]
 modulate = Color(0.913725, 0.729412, 0.27451, 1)
+scale = Vector2(0.2, 0.2)
 speed = 7500.0
 sender = NodePath("..")
 
@@ -17,3 +21,18 @@ points = PackedVector2Array(0, 0, 0, 0, 0, 0)
 default_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
 texture_mode = 1
 joint_mode = 2
+
+[node name="LabelAnchor" type="Node2D" parent="."]
+scale = Vector2(0.2, 0.2)
+
+[node name="Label" type="Label" parent="LabelAnchor"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -23.0
+offset_right = 75.0
+grow_vertical = 0
+text = "1/1"
+label_settings = SubResource("LabelSettings_j4otp")

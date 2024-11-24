@@ -4,6 +4,8 @@ class_name BallSpawner extends Node2D
 @onready var timer: float = 0
 @onready var line = $Line2D
 @onready var start_ball = $StartBall
+@onready var label = %Label
+@onready var label_anchor = $LabelAnchor
 @export var level: Level
 @export var n_balls: int = 1
 var balls_shot: int = 0
@@ -22,17 +24,16 @@ func _process(delta):
 	timer += delta
 	if _started_shooting and timer>=wait_time and balls_shot < n_balls:
 		# Firing the balls
-		line.visible = false
 		balls_shot += 1
 		var ball: Ball = start_ball.duplicate()
 		ball.direction = _direction
 		_deployed.append(ball)
 		add_child(ball)
 		timer -= wait_time
+		_update_label()
 		
 	if not _started_shooting:
 		# Aim hint drawing
-		line.visible = true
 		var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
 		var r1 = _ray(start_ball.global_position, dir)
 		var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
@@ -49,6 +50,7 @@ func _input(event):
 			if (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 				_direction = (event.global_position - start_ball.global_position).normalized()
 				_started_shooting = true
+				line.visible = false
 
 func on_return_ball(ball: Ball):
 	if balls_returned == 0:
@@ -56,6 +58,7 @@ func on_return_ball(ball: Ball):
 	balls_returned += 1
 	if balls_returned == n_balls:
 		reset()
+	_update_label()
 
 func recall():
 	for i in _deployed:
@@ -68,11 +71,17 @@ func reset():
 	balls_shot = 0
 	balls_returned = 0
 	_started_shooting = false
+	line.visible = true
 	if level:
 		level.next_round()
 
 func _ready():
 	start_ball.global_position = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y-10)
+	_update_label()
+
+func _update_label():
+	label_anchor.position = start_ball.position
+	label.text = "%d/%d" % [n_balls+balls_returned-balls_shot, n_balls]
 
 func add_temp_ball(ball: Ball):
 	_deployed.append(ball)
