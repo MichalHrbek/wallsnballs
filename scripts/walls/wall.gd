@@ -2,6 +2,8 @@ class_name Wall extends StaticBody2D
 
 signal destroyed
 
+const SIZE: float = 72
+
 @export var health: int
 @export var orientation: WallRes.WallOrientation = WallRes.WallOrientation.NONE:
 	set(value):

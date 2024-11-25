@@ -1,87 +1,173 @@
-[gd_scene load_steps=16 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=13 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7f4c8"]
+[ext_resource type="Script" path="res://scripts/game_align.gd" id="1_ke4oh"]
 [ext_resource type="Script" path="res://resources/level_res.gd" id="2_1frv6"]
 [ext_resource type="Script" path="res://resources/wall_res.gd" id="3_dg4ad"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="4_125qf"]
+[ext_resource type="PackedScene" uid="uid://c4a2uigga1pqs" path="res://scenes/walls/wall_barrier.tscn" id="5_t88ek"]
 
-[sub_resource type="Resource" id="Resource_cr71n"]
+[sub_resource type="Resource" id="Resource_d1m8a"]
 script = ExtResource("3_dg4ad")
-health = 25
-type = 0
-orientation = 0
+health = 64
+type = 1
+orientation = 2
 
-[sub_resource type="Resource" id="Resource_3amn2"]
+[sub_resource type="Resource" id="Resource_mu3fk"]
 script = ExtResource("3_dg4ad")
-health = 5
-type = 0
-orientation = 0
+health = 0
+type = 1
+orientation = 8
 
-[sub_resource type="Resource" id="Resource_id7uf"]
+[sub_resource type="Resource" id="Resource_3yg83"]
 script = ExtResource("3_dg4ad")
 health = 32
 type = 0
 orientation = 0
 
-[sub_resource type="Resource" id="Resource_j1cl4"]
+[sub_resource type="Resource" id="Resource_hcynt"]
 script = ExtResource("3_dg4ad")
 health = 16
-type = 1
-orientation = 2
+type = 0
+orientation = 0
 
-[sub_resource type="Resource" id="Resource_rchaf"]
-script = ExtResource("3_dg4ad")
-health = 0
-type = 3
-orientation = 9
-
-[sub_resource type="Resource" id="Resource_7d30p"]
+[sub_resource type="Resource" id="Resource_a58aw"]
 script = ExtResource("3_dg4ad")
 health = 0
 type = 4
-orientation = 0
-
-[sub_resource type="Resource" id="Resource_n2cnn"]
-script = ExtResource("3_dg4ad")
-health = 0
-type = 4
-orientation = 0
-
-[sub_resource type="Resource" id="Resource_p05ky"]
-script = ExtResource("3_dg4ad")
-health = 16
-type = 0
-orientation = 0
-
-[sub_resource type="Resource" id="Resource_3jl61"]
-script = ExtResource("3_dg4ad")
-health = 16
-type = 0
-orientation = 0
-
-[sub_resource type="Resource" id="Resource_c61r8"]
-script = ExtResource("3_dg4ad")
-health = 16
-type = 0
 orientation = 0
 
 [sub_resource type="Resource" id="Resource_d0c8n"]
 script = ExtResource("2_1frv6")
 name = ""
-width = 16
+width = 10
 height = 6
-walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_cr71n"), SubResource("Resource_3amn2"), null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_id7uf"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_j1cl4"), SubResource("Resource_rchaf"), SubResource("Resource_7d30p"), SubResource("Resource_n2cnn"), null, null, SubResource("Resource_p05ky"), null, null, null, SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_p05ky"), SubResource("Resource_3jl61"), SubResource("Resource_c61r8")])
+walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_d1m8a"), null, null, null, null, null, null, null, null, null, SubResource("Resource_mu3fk"), null, null, null, null, null, SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_a58aw"), SubResource("Resource_a58aw"), SubResource("Resource_a58aw"), SubResource("Resource_a58aw")])
 
 [node name="Node2D" type="Node2D"]
 
-[node name="BallSpawner" parent="." node_paths=PackedStringArray("level") instance=ExtResource("4_125qf")]
-position = Vector2(604, 622)
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="Control" parent="UILayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="UILayer/VBoxContainer/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/VBoxContainer/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/VBoxContainer/TopBar/CenterContainer"]
+layout_mode = 2
+text = "Score: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftBar" type="ColorRect" parent="UILayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="GameArea" type="MarginContainer" parent="UILayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="GameArea" type="Control" parent="UILayer/VBoxContainer/HBoxContainer/GameArea"]
+custom_minimum_size = Vector2(700, 936)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="RightBar" type="ColorRect" parent="UILayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="BottomBar" type="Control" parent="UILayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="UILayer/VBoxContainer/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/VBoxContainer/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="UILayer/VBoxContainer/BottomBar/CenterContainer"]
+layout_mode = 2
+text = "Try again"
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Game" type="Node2D" parent="GameLayer" node_paths=PackedStringArray("_game_area")]
+position = Vector2(0, 72)
+script = ExtResource("1_ke4oh")
+_game_area = NodePath("../../UILayer/VBoxContainer/HBoxContainer/GameArea/GameArea")
+
+[node name="BallSpawner" parent="GameLayer/Game" node_paths=PackedStringArray("level") instance=ExtResource("4_125qf")]
 level = NodePath("../Level")
 n_balls = 25
 
-[node name="Level" type="Node2D" parent="." node_paths=PackedStringArray("ball_spawner")]
+[node name="Level" type="Node2D" parent="GameLayer/Game" node_paths=PackedStringArray("ball_spawner")]
 script = ExtResource("1_7f4c8")
 lvl = SubResource("Resource_d0c8n")
 ball_spawner = NodePath("../BallSpawner")
+screen_size = Vector2(720, 936)
 
-[node name="Walls" type="Node2D" parent="Level"]
+[node name="Walls" type="Node2D" parent="GameLayer/Game/Level"]
+
+[node name="RightBorder" parent="GameLayer/Game/Level" instance=ExtResource("5_t88ek")]
+position = Vector2(720, 0)
+scale = Vector2(13, 13)
+
+[node name="TopBorder" parent="GameLayer/Game/Level" instance=ExtResource("5_t88ek")]
+rotation = -1.5708
+scale = Vector2(10, 10)
+
+[node name="LeftBorder" parent="GameLayer/Game/Level" instance=ExtResource("5_t88ek")]
+scale = Vector2(13, 13)
+
+[node name="BottomBorder" parent="GameLayer/Game/Level" instance=ExtResource("5_t88ek")]
+position = Vector2(0, 936)
+rotation = -1.5708
+scale = Vector2(10, 10)

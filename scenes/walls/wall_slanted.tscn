@@ -15,13 +15,13 @@ script = ExtResource("1_hw216")
 metadata/_edit_group_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(40, 40)
+scale = Vector2(72, 72)
 polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, -0.5, 0.5)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-scale = Vector2(1.9, 1.9)
+scale = Vector2(68, 68)
 color = Color(0.345098, 0.462745, 0.556863, 1)
-polygon = PackedVector2Array(-10, -10, 10, -10, -10, 10)
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, -0.5, 0.5)
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 3

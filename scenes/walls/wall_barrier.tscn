@@ -3,16 +3,20 @@
 [ext_resource type="Script" path="res://scripts/walls/wall_barrier.gd" id="1_yxdl8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_y5xfj"]
-b = Vector2(0, 1)
+b = Vector2(0, 72)
 
 [node name="Barrier" type="StaticBody2D"]
 collision_layer = 5
 collision_mask = 3
-input_pickable = true
 script = ExtResource("1_yxdl8")
 health = -1
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
 shape = SubResource("SegmentShape2D_y5xfj")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 0, 72)
+width = 0.1
+default_color = Color(0.027, 0.1035, 0.18, 1)

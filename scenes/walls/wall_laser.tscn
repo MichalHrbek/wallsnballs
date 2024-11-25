@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/walls/wall_laser.gd" id="1_fewbk"]
 [ext_resource type="Texture2D" uid="uid://dbjecd6eknr0s" path="res://assets/ball.svg" id="2_ynhhe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6jwhq"]
-radius = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6dlnv"]
+radius = 12.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 
@@ -14,12 +14,12 @@ input_pickable = true
 script = ExtResource("1_fewbk")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_6jwhq")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6dlnv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.344667, 0.619572, 1.15514e-06, 1)
-scale = Vector2(0.25, 0.25)
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0.345098, 0.619608, 0, 1)
+scale = Vector2(0.375, 0.375)
 texture = ExtResource("2_ynhhe")
 
 [node name="Label" type="Label" parent="."]

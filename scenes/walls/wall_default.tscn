@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0ls"]
+size = Vector2(72, 72)
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 
@@ -54,14 +55,12 @@ script = ExtResource("1_m0mka")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_yj0ls")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-scale = Vector2(1.9, 1.9)
+scale = Vector2(68, 68)
 color = Color(0.345098, 0.462745, 0.556863, 1)
-polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5)
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 15

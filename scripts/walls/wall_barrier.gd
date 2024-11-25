@@ -1,4 +1,7 @@
 extends Wall
 
-func hit(_source) -> bool:
+signal reflected(ball: Ball)
+
+func hit(source) -> bool:
+	reflected.emit(source)
 	return true

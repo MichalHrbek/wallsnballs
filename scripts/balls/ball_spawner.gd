@@ -37,14 +37,15 @@ func _process(delta):
 	if not _started_shooting:
 		# Aim hint drawing
 		var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
-		var r1 = _ray(start_ball.global_position, dir)
-		var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
-		line.points[0] = to_local(start_ball.global_position)
-		line.points[1] = to_local(r1.position)
-		line.points[2] = to_local(r2.position)
+		if dir != Vector2.ZERO:
+			var r1 = _ray(start_ball.global_position, dir)
+			var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
+			line.points[0] = to_local(start_ball.global_position)
+			line.points[1] = to_local(r1.position)
+			line.points[2] = to_local(r2.position)
 	
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed):
 			recall()
@@ -57,6 +58,7 @@ func _input(event):
 func on_return_ball(ball: Ball):
 	if balls_returned == 0:
 		start_ball.global_position.x = ball.global_position.x
+	ball.destroy()
 	balls_returned += 1
 	if balls_left == 0 and balls_returned == balls_fired:
 		reset()
@@ -76,11 +78,10 @@ func reset():
 	_started_shooting = false
 	line.visible = true
 	_update_label()
-	if level:
-		level.next_round()
+	level.next_round()
 
 func _ready():
-	start_ball.global_position = Vector2(get_viewport_rect().size.x/2, get_viewport_rect().size.y-10)
+	start_ball.position = Vector2(level.screen_size.x/2, level.screen_size.y-10)
 	_update_label()
 
 func _update_label():
