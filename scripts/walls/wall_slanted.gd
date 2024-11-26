@@ -13,13 +13,13 @@ func _update_rotation():
 			return
 	var rot = 0.0
 	if orientation == WallRes.WallOrientation.TOP_RIGHT:
-		rot = PI/2
+		rot = WallRes.ORIENTATION_TO_RAD[orientation][0]-PI/4
 		_label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT, Control.PRESET_MODE_KEEP_SIZE)
 	elif orientation == WallRes.WallOrientation.BOTTOM_RIGHT:
-		rot = PI
+		rot = WallRes.ORIENTATION_TO_RAD[orientation][0]-PI/4
 		_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT, Control.PRESET_MODE_KEEP_SIZE)
 	elif orientation == WallRes.WallOrientation.BOTTOM_LEFT:
-		rot = -PI/2
+		rot = WallRes.ORIENTATION_TO_RAD[orientation][0]-PI/4
 		_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_KEEP_SIZE)
 	else:
 		_label.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT, Control.PRESET_MODE_KEEP_SIZE)
