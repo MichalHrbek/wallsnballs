@@ -8,6 +8,6 @@ func hit(source) -> bool:
 		#LASERRR
 	return false
 
-func round_end():
+func on_round_over():
 	if _got_hit:
 		destroy()

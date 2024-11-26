@@ -16,7 +16,7 @@ func hit(_source) -> bool:
 		return true
 	return false
 
-func round_end():
+func on_round_over():
 	pass
 
 func destroy():

@@ -11,7 +11,7 @@ script = ExtResource("1_7c7c8")
 
 [node name="StartBall" parent="." node_paths=PackedStringArray("sender") instance=ExtResource("2_ntamy")]
 modulate = Color(0.913725, 0.729412, 0.27451, 1)
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.12, 0.12)
 sender = NodePath("..")
 
 [node name="Line2D" type="Line2D" parent="."]

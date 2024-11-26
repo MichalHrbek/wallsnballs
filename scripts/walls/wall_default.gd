@@ -2,6 +2,8 @@ class_name WallDefault extends Wall
 
 @onready var _label: Label = $Label
 @onready var _anim: AnimationPlayer = $AnimationPlayer
+@onready var _polygon: Polygon2D = $Polygon2D
+
 
 func hit(_source) -> bool:
 	health -= 1
@@ -13,8 +15,8 @@ func hit(_source) -> bool:
 		return true
 	return false
 
-func round_end():
-	pass
+func on_round_over():
+	_polygon.color = level.color_scheme.get_color(self)
 
 func _update_health():
 	_label.text = str(health)

@@ -5,6 +5,7 @@ signal round_ended
 @export var lvl: LevelRes
 @export var ball_spawner: BallSpawner
 @export var screen_size: Vector2
+@export var color_scheme: ColorScheme
 var walls: Array[Wall] = []
 
 const _wall_scenes = {
@@ -35,14 +36,19 @@ func _ready():
 					node.orientation = wall_res.orientation
 					walls[index] = node
 					node.destroyed.connect(_on_wall_destroyed.bind(node,index))
+	color_scheme.on_round_over(self)
+	for i in walls:
+		if i:
+			i.on_round_over()
 
 func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
+	color_scheme.on_round_over(self)
 	for i in walls:
 		if i:
-			i.round_end()
+			i.on_round_over()
 	var tween = get_tree().create_tween()
 	tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,Wall.SIZE), _slide_duration)
 	round_ended.emit()
