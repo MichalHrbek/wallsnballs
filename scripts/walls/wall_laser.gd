@@ -1,4 +1,6 @@
-class_name WallLaser extends Wall
+@tool
+
+class_name WallLaser extends WallMultiDirectional
 
 var _got_hit = false
 
