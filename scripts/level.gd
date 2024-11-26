@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+signal round_ended
+
 @export var lvl: LevelRes
 @export var ball_spawner: BallSpawner
 @export var screen_size: Vector2
@@ -38,8 +40,9 @@ func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
-	var tween = get_tree().create_tween()
-	tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,Wall.SIZE), _slide_duration)
 	for i in walls:
 		if i:
 			i.round_end()
+	var tween = get_tree().create_tween()
+	tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,Wall.SIZE), _slide_duration)
+	round_ended.emit()

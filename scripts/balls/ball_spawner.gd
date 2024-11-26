@@ -35,17 +35,23 @@ func _process(delta):
 		_update_label()
 		
 	if not _started_shooting:
-		# Aim hint drawing
-		var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
-		if dir != Vector2.ZERO:
-			var r1 = _ray(start_ball.global_position, dir)
-			var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
-			line.points[0] = to_local(start_ball.global_position)
-			line.points[1] = to_local(r1.position)
-			line.points[2] = to_local(r2.position)
+		#_update_aim_hint()
+		pass
+
+func _update_aim_hint():
+	var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
+	if dir != Vector2.ZERO:
+		var r1 = _ray(start_ball.global_position, dir)
+		var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
+		line.points[0] = to_local(start_ball.global_position)
+		line.points[1] = to_local(r1.position)
+		line.points[2] = to_local(r2.position)
 	
 
 func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		if not _started_shooting:
+			_update_aim_hint()
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed):
 			recall()
@@ -76,6 +82,7 @@ func reset():
 	balls_returned = 0
 	balls_fired = 0
 	_started_shooting = false
+	_update_aim_hint()
 	line.visible = true
 	_update_label()
 	level.next_round()
