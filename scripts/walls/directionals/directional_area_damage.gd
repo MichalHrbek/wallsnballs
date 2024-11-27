@@ -1,4 +1,4 @@
-extends Area2D
+class_name DirectionalAreaDamage extends Area2D
 
 @export var damage: float = 1
 

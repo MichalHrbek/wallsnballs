@@ -1,13 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc6lmqg6t87xd"]
+[gd_scene load_steps=6 format=3 uid="uid://cc6lmqg6t87xd"]
 
 [ext_resource type="PackedScene" uid="uid://dhryypd3jx00g" path="res://scenes/walls/directionals/directional_arrow.tscn" id="1_b5sne"]
-[ext_resource type="Script" path="res://scripts/walls/directionals/directional_area_damage.gd" id="1_blmlw"]
+[ext_resource type="Script" path="res://scripts/walls/directionals/directional_laser.gd" id="1_tlcpr"]
+
+[sub_resource type="Gradient" id="Gradient_xjtdx"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j4sv2"]
+gradient = SubResource("Gradient_xjtdx")
+fill_to = Vector2(0, 1)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vjt32"]
 b = Vector2(-720, 0)
 
 [node name="LaserDirectional" type="Area2D"]
-script = ExtResource("1_blmlw")
+script = ExtResource("1_tlcpr")
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-32, 0)
+points = PackedVector2Array(0, 0, -720, 0)
+width = 25.0
+texture = SubResource("GradientTexture2D_j4sv2")
+texture_mode = 1
+begin_cap_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_vjt32")
