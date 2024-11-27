@@ -14,6 +14,9 @@ var status: GameStatus = GameStatus.IN_PROGRESS:
 			game_ended.emit(value)
 var walls: Array[Wall] = []
 
+var _tween: Tween
+@onready var _lose_trigger: Area2D = $LoseTrigger
+
 enum GameStatus {IN_PROGRESS = 0, LOST = 1, WON = 2}
 
 const _wall_scenes = {
@@ -49,15 +52,31 @@ func _ready():
 		if i:
 			i.on_round_over()
 
+func _check_loss():
+	for i in _lose_trigger.get_overlapping_bodies():
+		if i is Wall:
+			print("YOU LOST")
+			status = GameStatus.LOST
+			return
+
 func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
-	walls.count(null)
+	if(walls.count(null) == len(walls)):
+		print("YOU WON")
+		status = GameStatus.WON
+		return
 	color_scheme.on_round_over(self)
 	for i in walls:
 		if i:
 			i.on_round_over()
-	var tween = get_tree().create_tween()
-	tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,Wall.SIZE), _slide_duration)
+	if _tween:
+		if _tween.is_running():
+			_tween.pause()
+			_tween.custom_step(1)
+		_tween.kill()
+	_tween = create_tween()
+	_tween.tween_property(_walls_group, "position", _walls_group.position+Vector2(0,Wall.SIZE), _slide_duration)
+	_tween.tween_callback(_check_loss)
 	round_ended.emit()

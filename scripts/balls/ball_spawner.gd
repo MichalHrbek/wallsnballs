@@ -61,14 +61,15 @@ func _unhandled_input(event):
 				_started_shooting = true
 				line.visible = false
 
-func on_return_ball(ball: Ball):
-	if balls_returned == 0:
-		start_ball.global_position.x = ball.global_position.x
-	ball.destroy()
-	balls_returned += 1
-	if balls_left == 0 and balls_returned == balls_fired:
-		reset()
-	_update_label()
+func on_return_ball(ball):
+	if ball is Ball:
+		if balls_returned == 0:
+			start_ball.global_position.x = ball.global_position.x
+		ball.destroy()
+		balls_returned += 1
+		if balls_left == 0 and balls_returned == balls_fired:
+			reset()
+		_update_label()
 
 func recall():
 	for i in _deployed:

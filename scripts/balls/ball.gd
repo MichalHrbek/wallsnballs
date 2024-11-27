@@ -1,8 +1,8 @@
-class_name Ball extends StaticBody2D
+class_name Ball extends CharacterBody2D
 
 @export var speed: float = 1000
 @export var sender: BallSpawner
-@export_flags_2d_physics var mask: int = 1
+@export_flags_2d_physics var mask: int = 0b101
 @export var direction = Vector2(0,0)
 # For animating balls returning to their origin
 @export var return_duration: float = 0.3

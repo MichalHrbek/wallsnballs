@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=17 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7f4c8"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_kp5uu"]
 [ext_resource type="Script" path="res://scripts/resources/level_res.gd" id="2_1frv6"]
 [ext_resource type="Script" path="res://scripts/resources/wall_res.gd" id="3_dg4ad"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="4_125qf"]
@@ -55,6 +56,9 @@ name = ""
 width = 10
 height = 6
 walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_d1m8a"), null, null, null, null, null, null, null, null, null, SubResource("Resource_mu3fk"), null, null, null, null, null, SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_3yg83"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_hcynt"), SubResource("Resource_fj7ba"), SubResource("Resource_xrmbm"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_a58aw"), SubResource("Resource_a58aw"), SubResource("Resource_a58aw"), SubResource("Resource_a58aw"), null, null, null])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo8sl"]
+size = Vector2(720, 72)
 
 [node name="Node2D" type="Node2D"]
 
@@ -113,6 +117,8 @@ size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="Game" type="Node2D" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea"]
+z_index = -1
+script = ExtResource("1_kp5uu")
 
 [node name="BallSpawner" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" node_paths=PackedStringArray("level") instance=ExtResource("4_125qf")]
 level = NodePath("../Level")
@@ -143,6 +149,12 @@ scale = Vector2(13, 13)
 position = Vector2(0, 936)
 rotation = -1.5708
 scale = Vector2(10, 10)
+
+[node name="LoseTrigger" type="Area2D" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/Level"]
+position = Vector2(360, 936)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/Level/LoseTrigger"]
+shape = SubResource("RectangleShape2D_mo8sl")
 
 [node name="RightBar" type="ColorRect" parent="GameLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

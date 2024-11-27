@@ -45,7 +45,7 @@ _data = {
 "hit_effect": SubResource("Animation_1ifnt")
 }
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="CharacterBody2D"]
 collision_mask = 3
 input_pickable = true
 script = ExtResource("1_m0mka")

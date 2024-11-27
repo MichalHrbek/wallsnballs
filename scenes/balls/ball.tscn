@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_smx4g"]
 radius = 32.0
 
-[node name="Ball" type="StaticBody2D"]
+[node name="Ball" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_1xthx")
 metadata/_edit_group_ = true
 
