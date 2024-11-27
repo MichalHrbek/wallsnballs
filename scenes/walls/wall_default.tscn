@@ -1,9 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dle7lmca52cus"]
+[gd_scene load_steps=7 format=3 uid="uid://dle7lmca52cus"]
 
 [ext_resource type="Script" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0ls"]
-size = Vector2(72, 72)
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 
@@ -54,8 +51,9 @@ input_pickable = true
 script = ExtResource("1_m0mka")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yj0ls")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(72, 72)
+polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5)
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(68, 68)

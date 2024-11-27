@@ -1,12 +1,20 @@
 class_name Level extends Node2D
 
 signal round_ended
+signal game_ended(status: GameStatus)
 
 @export var lvl: LevelRes
 @export var ball_spawner: BallSpawner
 @export var screen_size: Vector2
 @export var color_scheme: ColorScheme
+var status: GameStatus = GameStatus.IN_PROGRESS:
+	set(value):
+		status = value
+		if value != GameStatus.IN_PROGRESS:
+			game_ended.emit(value)
 var walls: Array[Wall] = []
+
+enum GameStatus {IN_PROGRESS = 0, LOST = 1, WON = 2}
 
 const _wall_scenes = {
 	WallRes.WallType.NORMAL: preload("res://scenes/walls/wall_default.tscn"),
@@ -45,6 +53,7 @@ func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
 
 func next_round():
+	walls.count(null)
 	color_scheme.on_round_over(self)
 	for i in walls:
 		if i:

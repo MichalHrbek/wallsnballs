@@ -1,45 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://oknw64hylf1x"]
+[gd_scene load_steps=3 format=3 uid="uid://drwkq2djkpay2"]
 
+[ext_resource type="PackedScene" uid="uid://dle7lmca52cus" path="res://scenes/walls/wall_default.tscn" id="1_gypwk"]
 [ext_resource type="Script" path="res://scripts/walls/wall_slanted.gd" id="1_hw216"]
-[ext_resource type="AnimationLibrary" uid="uid://bl11vd2ibwu2w" path="res://animations/walls.res" id="2_sedtv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_npei6"]
-font_size = 13
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qaxr7"]
-
-[node name="WallSlanted" type="StaticBody2D"]
-collision_mask = 3
-input_pickable = true
+[node name="WallSlanted" instance=ExtResource("1_gypwk")]
 script = ExtResource("1_hw216")
-metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(72, 72)
+[node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, -0.5, 0.5)
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-scale = Vector2(68, 68)
-color = Color(0.345098, 0.462745, 0.556863, 1)
+[node name="Polygon2D" parent="." index="1"]
 polygon = PackedVector2Array(-0.5, -0.5, 0.5, -0.5, -0.5, 0.5)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" parent="." index="2"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -19.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "0"
-label_settings = SubResource("LabelSettings_npei6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_qaxr7"),
-"walls": ExtResource("2_sedtv")
-}
+offset_left = -23.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0

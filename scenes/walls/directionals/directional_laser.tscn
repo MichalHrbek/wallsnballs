@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc6lmqg6t87xd"]
+
+[ext_resource type="PackedScene" uid="uid://dhryypd3jx00g" path="res://scenes/walls/directionals/directional_arrow.tscn" id="1_b5sne"]
+[ext_resource type="Script" path="res://scripts/walls/directionals/directional_area_damage.gd" id="1_blmlw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vjt32"]
+b = Vector2(-720, 0)
+
+[node name="LaserDirectional" type="Area2D"]
+script = ExtResource("1_blmlw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_vjt32")
+
+[node name="ArrowDirectional" parent="." instance=ExtResource("1_b5sne")]
