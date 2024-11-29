@@ -20,6 +20,10 @@ func on_round_over():
 
 func _update_health():
 	_label.text = str(health)
+	if health == 0:
+		_label.visible = false
+	else:
+		_label.visible = true
 
 func _ready():
 	_update_health()
