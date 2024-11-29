@@ -17,7 +17,7 @@ var _deployed: Array[Ball] = []
 
 func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(origin, to_global(dir*99999), 0b100, exclude)
+	var query = PhysicsRayQueryParameters2D.create(origin, to_global(dir*999999), 0b100, exclude)
 	var result = space_state.intersect_ray(query)
 	return result
 
