@@ -25,17 +25,19 @@ const _wall_scenes = {
 	WallRes.WallType.SLANTED: preload("res://scenes/walls/wall_slanted.tscn"),
 	WallRes.WallType.PLUS_ONE: preload("res://scenes/walls/wall_plus_one.tscn"),
 	WallRes.WallType.LASER: preload("res://scenes/walls/wall_laser.tscn"),
+	WallRes.WallType.BOMB: preload("res://scenes/walls/wall_bomb.tscn"),
 }
 const _slide_duration: float = 0.3
 
-@onready var _walls_group = $Walls
+@onready var walls_node = $Walls
+@onready var effects_node = $Effects
 
 func _ready():
 	$BottomBorder.reflected.connect(ball_spawner.on_return_ball)
 	# Spawning bricks
 	for i in _row:
 		_spawn_row(i)
-	_walls_group.position.y += Wall.SIZE*_row
+	walls_node.position.y += Wall.SIZE*_row
 	
 	color_scheme.on_round_over(self)
 	for i in walls:
@@ -55,7 +57,7 @@ func _spawn_row(row_index:int):
 			if node:
 				node.health = wall_res.health
 				node.level = self
-				_walls_group.add_child(node)
+				walls_node.add_child(node)
 				node.position += Vector2(Wall.SIZE*(x+0.5),Wall.SIZE*(y+0.5))
 				node.orientation = wall_res.orientation
 				walls[index] = node
@@ -85,6 +87,6 @@ func next_round():
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
-	_tween.tween_property(_walls_group, "position", Vector2(0,_row*Wall.SIZE), _slide_duration)
+	_tween.tween_property(walls_node, "position", Vector2(0,_row*Wall.SIZE), _slide_duration)
 	_tween.tween_callback(_check_loss)
 	round_ended.emit()

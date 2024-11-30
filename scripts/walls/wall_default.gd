@@ -4,12 +4,14 @@ class_name WallDefault extends Wall
 @onready var _anim: AnimationPlayer = $AnimationPlayer
 @onready var _polygon: Polygon2D = $Polygon2D
 
+func _on_health_depleted():
+	destroy()
 
 func hit(_source) -> bool:
 	health -= 1
 	_update_health()
 	if health <= 0:
-		destroy()
+		_on_health_depleted()
 	if health >= 0:
 		_anim.play("walls/hit_effect")
 		return true

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://8eub300tprl0"]
+
+[ext_resource type="PackedScene" uid="uid://dle7lmca52cus" path="res://scenes/walls/wall_default.tscn" id="1_2qli8"]
+[ext_resource type="Texture2D" uid="uid://cd7svyv82dlup" path="res://assets/bomb.svg" id="2_dyhoy"]
+[ext_resource type="Script" path="res://scripts/walls/wall_bomb.gd" id="2_qux0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2whmi"]
+size = Vector2(144, 144)
+
+[node name="WallBomb" instance=ExtResource("1_2qli8")]
+script = ExtResource("2_qux0b")
+
+[node name="Bomb" type="Sprite2D" parent="." index="2"]
+position = Vector2(2, -7)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_dyhoy")
+
+[node name="Label" parent="." index="3"]
+text = "0
+"
+
+[node name="BlastArea" type="Area2D" parent="." index="5"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlastArea" index="0"]
+shape = SubResource("RectangleShape2D_2whmi")
