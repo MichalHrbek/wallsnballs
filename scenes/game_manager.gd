@@ -5,5 +5,5 @@ extends Node2D
 func _ready():
 	_level.game_ended.connect(_on_game_ended)
 
-func _on_game_ended(status: Level.GameStatus):
+func _on_game_ended(_status: Level.GameStatus):
 	process_mode = PROCESS_MODE_DISABLED
