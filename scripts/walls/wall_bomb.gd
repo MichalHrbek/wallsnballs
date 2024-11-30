@@ -15,3 +15,5 @@ func _on_health_depleted():
 	m.color = _polygon.color
 	e.restart()
 	super()
+
+# TODO: Bomb exploding another bomb

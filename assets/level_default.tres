@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="LevelRes" load_steps=9 format=3 uid="uid://cncsfllhu5vqc"]
+
+[ext_resource type="Script" path="res://scripts/resources/level_res.gd" id="1_7ns6c"]
+[ext_resource type="Script" path="res://scripts/resources/wall_res.gd" id="2_f425s"]
+
+[sub_resource type="Resource" id="Resource_iyjtb"]
+script = ExtResource("2_f425s")
+health = 16
+type = 0
+orientation = 0
+
+[sub_resource type="Resource" id="Resource_h4l8a"]
+script = ExtResource("2_f425s")
+health = 0
+type = 3
+orientation = 9
+
+[sub_resource type="Resource" id="Resource_6vqwl"]
+script = ExtResource("2_f425s")
+health = 0
+type = 4
+orientation = 0
+
+[sub_resource type="Resource" id="Resource_jtxio"]
+script = ExtResource("2_f425s")
+health = 0
+type = 4
+orientation = 0
+
+[sub_resource type="Resource" id="Resource_8tflw"]
+script = ExtResource("2_f425s")
+health = 40
+type = 1
+orientation = 2
+
+[sub_resource type="Resource" id="Resource_bakxh"]
+script = ExtResource("2_f425s")
+health = 40
+type = 1
+orientation = 4
+
+[resource]
+script = ExtResource("1_7ns6c")
+name = ""
+width = 10
+height = 4
+start = 2
+walls = Array[ExtResource("2_f425s")]([SubResource("Resource_iyjtb"), SubResource("Resource_h4l8a"), SubResource("Resource_iyjtb"), SubResource("Resource_6vqwl"), SubResource("Resource_iyjtb"), SubResource("Resource_jtxio"), SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_8tflw"), null, null, null, null, null, null, null, null, SubResource("Resource_bakxh")])

@@ -15,6 +15,7 @@ var walls: Array[Wall] = []
 
 var _tween: Tween
 var _row = 0
+var width: int
 
 @onready var _lose_trigger: Area2D = $LoseTrigger
 
@@ -47,12 +48,29 @@ func _ready():
 func _spawn_row(_row_index:int):
 	pass
 
+func _spawn_wall(x:int, y:int, wall: WallRes):
+	var index = x + y*width
+	if wall:
+		var node: Wall = _wall_scenes[wall.type].instantiate()
+		if node:
+			node.health = wall.health
+			node.level = self
+			walls_node.add_child(node)
+			node.position += Vector2(Wall.SIZE*(x+0.5),Wall.SIZE*((-y-1)+0.5))
+			node.orientation = wall.orientation
+			walls[index] = node
+			node.destroyed.connect(_on_wall_destroyed.bind(node,index))
+
+func _check_win():
+	if(walls.count(null) == len(walls)):
+		print("YOU WON")
+		status = GameStatus.WON
+
 func _check_loss():
 	for i in _lose_trigger.get_overlapping_bodies():
 		if i is Wall:
 			print("YOU LOST")
 			status = GameStatus.LOST
-			return
 
 func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null
@@ -60,10 +78,7 @@ func _on_wall_destroyed(_wall: Wall, index: int):
 func next_round():
 	_spawn_row(_row)
 	_row += 1
-	if(walls.count(null) == len(walls)):
-		print("YOU WON")
-		status = GameStatus.WON
-		return
+	_check_win()
 	color_scheme.on_round_over(self)
 	for i in walls:
 		if i:

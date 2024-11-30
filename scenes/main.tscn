@@ -1,32 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=8 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_kp5uu"]
-[ext_resource type="Script" path="res://scripts/resources/level_res.gd" id="2_1frv6"]
-[ext_resource type="Script" path="res://scripts/resources/wall_res.gd" id="3_dg4ad"]
-[ext_resource type="Script" path="res://scripts/level_static.gd" id="3_kyu7v"]
+[ext_resource type="Script" path="res://scripts/level_endless.gd" id="3_hnika"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="4_125qf"]
 [ext_resource type="PackedScene" uid="uid://c4a2uigga1pqs" path="res://scenes/walls/wall_barrier.tscn" id="5_t88ek"]
 [ext_resource type="Texture2D" uid="uid://c4c3skttdldgf" path="res://assets/arrow_right.svg" id="8_ff444"]
 
-[sub_resource type="Resource" id="Resource_iyjtb"]
-script = ExtResource("3_dg4ad")
-health = 16
-type = 0
-orientation = 0
-
-[sub_resource type="Resource" id="Resource_jxclk"]
-script = ExtResource("3_dg4ad")
-health = 64
-type = 1
-orientation = 4
-
-[sub_resource type="Resource" id="Resource_aaiv6"]
-script = ExtResource("2_1frv6")
-name = ""
-width = 10
-height = 5
-start = 2
-walls = Array[ExtResource("3_dg4ad")]([SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_jxclk")])
+[sub_resource type="Curve" id="Curve_cd51k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mo8sl"]
 size = Vector2(720, 72)
@@ -96,8 +78,8 @@ level = NodePath("../Level")
 n_balls = 25
 
 [node name="Level" type="Node2D" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" node_paths=PackedStringArray("ball_spawner")]
-script = ExtResource("3_kyu7v")
-level_res = SubResource("Resource_aaiv6")
+script = ExtResource("3_hnika")
+difficulty = SubResource("Curve_cd51k")
 ball_spawner = NodePath("../BallSpawner")
 metadata/_edit_group_ = true
 
