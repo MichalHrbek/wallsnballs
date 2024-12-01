@@ -9,3 +9,6 @@ func hit(source) -> bool:
 			source.sender.add_ball()
 			destroy()
 	return false
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.PLUS_ONE,orientation)

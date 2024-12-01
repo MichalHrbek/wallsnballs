@@ -3,7 +3,6 @@ class_name LevelEndless extends Level
 @export var difficulty: Curve
 
 func _ready():
-	width = 10
 	_row = 2
 	super()
 

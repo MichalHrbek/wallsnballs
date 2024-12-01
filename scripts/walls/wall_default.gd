@@ -9,7 +9,7 @@ func _on_health_depleted():
 
 func hit(_source) -> bool:
 	health -= 1
-	_update_health()
+	_on_health_set()
 	if health <= 0:
 		_on_health_depleted()
 	if health >= 0:
@@ -20,7 +20,8 @@ func hit(_source) -> bool:
 func on_round_over():
 	_polygon.color = level.color_scheme.get_color(self)
 
-func _update_health():
+func _on_health_set():
+	if !_label: return
 	_label.text = str(health)
 	if health == 0:
 		_label.visible = false
@@ -28,4 +29,7 @@ func _update_health():
 		_label.visible = true
 
 func _ready():
-	_update_health()
+	_on_health_set()
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.NORMAL,orientation)

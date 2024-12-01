@@ -15,7 +15,7 @@ var walls: Array[Wall] = []
 
 var _tween: Tween
 var _row = 0
-var width: int
+var width: int = 10
 
 @onready var _lose_trigger: Area2D = $LoseTrigger
 
@@ -29,6 +29,11 @@ const _wall_scenes = {
 	WallRes.WallType.BOMB: preload("res://scenes/walls/wall_bomb.tscn"),
 }
 const _slide_duration: float = 0.3
+
+# The game area is sized 10x12 walls (A wall in the 13th row means losing)
+const GAME_HEIGHT = 12
+const GAME_WIDTH = 10
+
 
 @onready var walls_node = $Walls
 @onready var effects_node = $Effects # TODO: Should effects_node move with the rest of the level?
@@ -49,8 +54,7 @@ func _ready():
 func _spawn_row(_row_index:int):
 	pass
 
-func _spawn_wall(x:int, y:int, wall: WallRes):
-	var index = x + y*width
+func _spawn_wall(x:int, y:int, wall: WallRes) -> int:
 	if wall:
 		var node: Wall = _wall_scenes[wall.type].instantiate()
 		if node:
@@ -59,8 +63,10 @@ func _spawn_wall(x:int, y:int, wall: WallRes):
 			walls_node.add_child(node)
 			node.position += Vector2(Wall.SIZE*(x+0.5),Wall.SIZE*((-y-1)+0.5))
 			node.orientation = wall.orientation
-			walls[index] = node
-			node.destroyed.connect(_on_wall_destroyed.bind(node,index))
+			walls.append(node)
+			node.destroyed.connect(_on_wall_destroyed.bind(node,len(walls)-1))
+			return len(walls)-1
+	return -1
 
 func _check_win():
 	if(walls.count(null) == len(walls)):

@@ -25,3 +25,6 @@ func _on_health_depleted():
 	e.restart()
 	
 	super()
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.BOMB,orientation)

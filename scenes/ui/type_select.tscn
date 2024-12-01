@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b02r6574rp0fy"]
+
+[node name="TypeSelect" type="OptionButton"]
+selected = 0
+item_count = 5
+popup/item_0/text = "Normal"
+popup/item_1/text = "Slanted"
+popup/item_1/id = 1
+popup/item_2/text = "Bomb"
+popup/item_2/id = 2
+popup/item_3/text = "Laser"
+popup/item_3/id = 3
+popup/item_4/text = "+1"
+popup/item_4/id = 4

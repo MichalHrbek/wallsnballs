@@ -14,3 +14,6 @@ func hit(source) -> bool:
 func on_round_over():
 	if _got_hit:
 		destroy()
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.LASER,orientation)

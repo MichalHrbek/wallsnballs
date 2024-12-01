@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cr3fp36oio6up"]
+
+[node name="WallBlock" type="Control"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 72.0
+offset_bottom = 72.0
+focus_mode = 2

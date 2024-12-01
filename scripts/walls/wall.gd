@@ -4,7 +4,10 @@ signal destroyed
 
 const SIZE: float = 72
 
-@export var health: int
+@export var health: int:
+	set(value):
+		health = value
+		_on_health_set()
 @export var orientation: WallRes.WallOrientation = WallRes.WallOrientation.NONE:
 	set(value):
 		orientation = value
@@ -25,3 +28,9 @@ func destroy():
 
 func _on_orientation_set():
 	pass
+
+func _on_health_set():
+	pass
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.NORMAL,orientation)

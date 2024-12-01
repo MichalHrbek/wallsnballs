@@ -28,4 +28,7 @@ func _update_rotation():
 
 func _ready():
 	_update_rotation()
-	_update_health()
+	super()
+
+func to_res() -> WallRes:
+	return WallRes.new(health,WallRes.WallType.SLANTED,orientation)

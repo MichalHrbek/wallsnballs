@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bswmhrvghcrj4"]
+
+[node name="OrientationSelect" type="OptionButton"]
+selected = 0
+item_count = 12
+popup/item_0/text = "None"
+popup/item_1/text = "Left"
+popup/item_1/id = 1
+popup/item_2/text = "Top-left"
+popup/item_2/id = 2
+popup/item_3/text = "Top"
+popup/item_3/id = 3
+popup/item_4/text = "Top-right"
+popup/item_4/id = 4
+popup/item_5/text = "Right"
+popup/item_5/id = 5
+popup/item_6/text = "Bottom-right"
+popup/item_6/id = 6
+popup/item_7/text = "Bottom"
+popup/item_7/id = 7
+popup/item_8/text = "Bottom-left"
+popup/item_8/id = 8
+popup/item_9/text = "Left to Right"
+popup/item_9/id = 9
+popup/item_10/text = "Top to Bottom"
+popup/item_10/id = 10
+popup/item_11/text = "4-Way"
+popup/item_11/id = 11
