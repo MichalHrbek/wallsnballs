@@ -31,10 +31,11 @@ const _wall_scenes = {
 const _slide_duration: float = 0.3
 
 @onready var walls_node = $Walls
-@onready var effects_node = $Effects
+@onready var effects_node = $Effects # TODO: Should effects_node move with the rest of the level?
 
 func _ready():
-	$BottomBorder.reflected.connect(ball_spawner.on_return_ball)
+	if ball_spawner:
+		$BottomBorder.reflected.connect(ball_spawner.on_return_ball)
 	# Spawning bricks
 	for i in _row:
 		_spawn_row(i)

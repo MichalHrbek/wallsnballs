@@ -1,4 +1,4 @@
-class_name LevelStatic extends Level
+class_name LevelEndless extends Level
 
 @export var difficulty: Curve
 

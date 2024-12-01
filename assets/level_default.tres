@@ -41,8 +41,9 @@ orientation = 4
 
 [resource]
 script = ExtResource("1_7ns6c")
-name = ""
+name = "Default"
 width = 10
 height = 4
 start = 2
+balls = 25
 walls = Array[ExtResource("2_f425s")]([SubResource("Resource_iyjtb"), SubResource("Resource_h4l8a"), SubResource("Resource_iyjtb"), SubResource("Resource_6vqwl"), SubResource("Resource_iyjtb"), SubResource("Resource_jtxio"), SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, SubResource("Resource_iyjtb"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_8tflw"), null, null, null, null, null, null, null, null, SubResource("Resource_bakxh")])

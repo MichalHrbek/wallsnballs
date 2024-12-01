@@ -7,7 +7,7 @@ class_name BallSpawner extends Node2D
 @onready var label = %Label
 @onready var label_anchor = $LabelAnchor
 @export var level: Level
-@export var n_balls: int = 1
+@export var n_balls: int = 25
 @onready var balls_left: int = n_balls
 var balls_returned: int = 0
 var balls_fired: int = 0
@@ -42,10 +42,12 @@ func _update_aim_hint():
 	var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
 	if dir != Vector2.ZERO:
 		var r1 = _ray(start_ball.global_position, dir)
-		var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
-		line.points[0] = to_local(start_ball.global_position)
-		line.points[1] = to_local(r1.position)
-		line.points[2] = to_local(r2.position)
+		if r1:
+			var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
+			if r2:
+				line.points[0] = to_local(start_ball.global_position)
+				line.points[1] = to_local(r1.position)
+				line.points[2] = to_local(r2.position)
 	
 
 func _unhandled_input(event):
@@ -53,10 +55,10 @@ func _unhandled_input(event):
 		if not _started_shooting:
 			_update_aim_hint()
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed):
+		if (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
 			recall()
 		if not _started_shooting:
-			if (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
+			if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 				_direction = (event.global_position - start_ball.global_position).normalized()
 				_started_shooting = true
 				line.visible = false
@@ -69,6 +71,7 @@ func on_return_ball(ball):
 		balls_returned += 1
 		if balls_left == 0 and balls_returned == balls_fired:
 			reset()
+			level.next_round()
 		_update_label()
 
 func recall():
@@ -76,6 +79,7 @@ func recall():
 		if is_instance_valid(i):
 			i.destroy()
 	reset()
+	level.next_round()
 
 func reset():
 	_deployed = []
@@ -86,7 +90,6 @@ func reset():
 	_update_aim_hint()
 	line.visible = true
 	_update_label()
-	level.next_round()
 
 func _ready():
 	start_ball.position = Vector2(level.screen_size.x/2, level.screen_size.y-10)

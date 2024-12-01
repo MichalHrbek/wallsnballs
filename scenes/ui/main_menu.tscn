@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://do3tux3la5xub"]
+
+[ext_resource type="Script" path="res://scripts/ui/scene_changer.gd" id="1_g2bo3"]
+[ext_resource type="PackedScene" uid="uid://bg2hpjblc4id0" path="res://scenes/game_endless.tscn" id="2_t3ns2"]
+[ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select.tscn" id="3_xsi4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f7vd8"]
+font_size = 64
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Walls N Balls"
+label_settings = SubResource("LabelSettings_f7vd8")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Menu" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Menu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Menu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Menu/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ButtonEndless" type="Button" parent="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Endless"
+script = ExtResource("1_g2bo3")
+scene = ExtResource("2_t3ns2")
+
+[node name="ButtonLevelSelect" type="Button" parent="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select Level"
+script = ExtResource("1_g2bo3")
+scene = ExtResource("3_xsi4h")
+
+[node name="ButtonLevelEditor" type="Button" parent="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Editor"
+script = ExtResource("1_g2bo3")
+scene = ExtResource("2_t3ns2")
+
+[connection signal="pressed" from="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonEndless" to="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonEndless" method="_change_scene"]
+[connection signal="pressed" from="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" to="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" method="_change_scene"]
+[connection signal="pressed" from="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelEditor" to="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelEditor" method="_change_scene"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://csaksgm2iybd6"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_qg460"]
+[ext_resource type="PackedScene" uid="uid://c4a2uigga1pqs" path="res://scenes/walls/wall_barrier.tscn" id="2_xunu4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo8sl"]
+size = Vector2(720, 72)
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("ball_spawner")]
+script = ExtResource("1_qg460")
+ball_spawner = NodePath("")
+metadata/_edit_group_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="RightBorder" parent="." instance=ExtResource("2_xunu4")]
+position = Vector2(720, 0)
+scale = Vector2(13, 13)
+
+[node name="TopBorder" parent="." instance=ExtResource("2_xunu4")]
+rotation = -1.5708
+scale = Vector2(10, 10)
+
+[node name="LeftBorder" parent="." instance=ExtResource("2_xunu4")]
+scale = Vector2(13, 13)
+
+[node name="BottomBorder" parent="." instance=ExtResource("2_xunu4")]
+position = Vector2(0, 936)
+rotation = -1.5708
+scale = Vector2(10, 10)
+
+[node name="LoseTrigger" type="Area2D" parent="."]
+position = Vector2(360, 936)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseTrigger"]
+shape = SubResource("RectangleShape2D_mo8sl")
