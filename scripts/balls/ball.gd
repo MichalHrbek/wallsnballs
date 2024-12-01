@@ -15,15 +15,13 @@ func _physics_process(delta):
 		var query = PhysicsRayQueryParameters2D.create(global_position, goal, mask)
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is Wall and result.collider.hit(self):
+			global_position = lerp(global_position, result.position, 0.99) # :( Close enough
 			direction = direction.bounce(result.normal)
-			#print(result)
 		else:
 			global_position = goal
 
-var end_pos: Vector2
 func destroy():
 	if not _destroyed:
-		end_pos = position
 		_destroyed = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", sender.start_ball.position, return_duration)
