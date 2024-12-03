@@ -22,7 +22,7 @@ const ORIENTATION_TO_RAD = {
 @export var type: WallType = WallType.NORMAL
 @export var orientation: WallOrientation = WallOrientation.NONE
 
-func _init(_health: int=0, _type: WallType=0, _orientation: WallOrientation=0):
+func _init(_health: int=0, _type: WallType=WallType.NORMAL, _orientation: WallOrientation=WallOrientation.NONE):
 	health = _health
 	type = _type
 	orientation = _orientation

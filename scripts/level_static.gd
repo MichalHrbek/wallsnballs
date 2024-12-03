@@ -5,6 +5,7 @@ class_name LevelStatic extends Level
 func _ready():
 	if !level_res:
 		level_res = GlobalUiState.selected_level
+		GlobalUiState.selected_level = null
 	ball_spawner.n_balls = level_res.balls
 	ball_spawner.reset()
 	width = level_res.width

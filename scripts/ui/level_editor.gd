@@ -8,13 +8,15 @@ const block_scene = preload("res://scenes/ui/editor_wall_block.tscn")
 var pos_to_index = {}
 var index_to_pos = {}
 var shift: int = 0
-var selected: Vector2i = Vector2i(0,0)
+var selected: Vector2i = Vector2i(0,1)
 var selected_index: int = -1
 
 @onready var _orientaion_select: OptionButton = %OrientationSelect
 @onready var _type_select: OptionButton = %TypeSelect
 @onready var _health: SpinBox = %Health
 @onready var _selector: ColorRect = %Selector
+@onready var _name: LineEdit = %Name
+@onready var _balls: SpinBox = %Balls
 
 func _move(delta: int):
 	shift += delta
@@ -25,7 +27,6 @@ func _on_block_event(event: InputEvent, x:int, y: int):
 	if event is InputEventMouseButton:
 		if event.pressed: return
 		if event.button_index != MOUSE_BUTTON_LEFT: return
-		#release_focus()
 		selected = Vector2i(x,y-shift)
 		_update_selection()
 
@@ -48,16 +49,25 @@ func _update_selection():
 
 func _ready():
 	if !level_res:
-		level_res = LevelRes.new()
+		if GlobalUiState.selected_level:
+			level_res = GlobalUiState.selected_level
+			GlobalUiState.selected_level = null
+		else:
+			level_res = LevelRes.new()
+	
 	for y in Level.GAME_HEIGHT+1:
 		for x in Level.GAME_WIDTH:
 			var b: Control = block_scene.instantiate()
 			b.gui_input.connect(_on_block_event.bind(y).bind(x))
 			_game_area.add_child(b)
-	if level_res:
-		for y in level_res.height:
-			for x in level_res.width:
-				_add_wall(x,y,level_res.walls[x+y*level_res.width])
+	
+	_name.text = level_res.name
+	_balls.value = level_res.balls
+	_move(level_res.start-1)
+	for y in level_res.height:
+		for x in level_res.width:
+			_add_wall(x,-y,level_res.walls[x+y*level_res.width])
+	_update_selection()
 
 func _add_wall(x,y,res:WallRes) -> int:
 	var index = level._spawn_wall(x,-y-1,res)
@@ -66,13 +76,27 @@ func _add_wall(x,y,res:WallRes) -> int:
 		index_to_pos[index] = Vector2i(x,y)
 	return index
 
-func _on_name_text_submitted(new_text):
-	level_res.name = new_text
-
-
 func _on_save_pressed():
-	pass # TODO: Implement
-
+	level_res.balls = int(_balls.value)
+	level_res.name = _name.text
+	
+	var min_y = 0
+	var max_y = 0
+	for i in pos_to_index.keys():
+		min_y = min(min_y, i.y)
+		max_y = max(max_y, i.y)
+	level_res.height = max_y-min_y+1
+	level_res.start = max_y+shift+1
+	
+	level_res.walls = []
+	level_res.walls.resize(level_res.height*level_res.width)
+	for i in pos_to_index:
+		level_res.walls[i.x+(max_y-i.y)*level_res.width] = level.walls[pos_to_index[i]].to_res()
+	if level_res.resource_path: ResourceSaver.save(level_res)
+	else:
+		print(ResourceSaver.save(level_res, "res://levels/"+level_res.name.to_snake_case()+".tres"))
+		print("res://levels/"+level_res.name.to_snake_case()+".tres")
+	
 
 func _on_add_pressed():
 	if selected_index == -1:
@@ -87,11 +111,9 @@ func _on_remove_pressed():
 		selected_index = -1
 		_update_selection()
 
-
 func _on_orientation_select_item_selected(index):
 	if selected_index != -1:
 		level.walls[selected_index].orientation = index
-
 
 func _on_type_select_item_selected(index):
 	if selected_index != -1:

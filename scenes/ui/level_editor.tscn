@@ -112,11 +112,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="Name" type="LineEdit" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Name"
 max_length = 63
 expand_to_text_length = true
+
+[node name="Balls" type="SpinBox" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 25.0
+value = 25.0
+rounded = true
+suffix = "balls"
 
 [node name="Save" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
@@ -187,7 +196,6 @@ rounded = true
 editable = false
 suffix = "hp"
 
-[connection signal="text_submitted" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer4/Name" to="." method="_on_name_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer4/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/VBoxContainer/Remove" to="." method="_on_remove_pressed"]
