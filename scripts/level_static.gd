@@ -19,3 +19,7 @@ func _spawn_row(row_index:int):
 		var index = row_index*level_res.width+x
 		walls.append(null)
 		_spawn_wall(x,row_index,level_res.walls[index])
+
+func _check_win():
+	if (walls.count(null) == len(walls)) and _row >= level_res.height:
+		status = GameStatus.WON

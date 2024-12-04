@@ -5,7 +5,7 @@ signal game_ended(status: GameStatus)
 
 @export var ball_spawner: BallSpawner
 @export var screen_size: Vector2 = Vector2(720,936)
-@export var color_scheme: ColorScheme = preload("res://assets/color_scheme_default.tres")
+@export var color_scheme: ColorScheme = preload("res://assets/game/color_scheme_default.tres")
 var status: GameStatus = GameStatus.IN_PROGRESS:
 	set(value):
 		status = value
@@ -34,6 +34,8 @@ const _slide_duration: float = 0.3
 const GAME_HEIGHT = 12
 const GAME_WIDTH = 10
 
+const CUSTOM_LEVELS_DIR = "user://levels/"
+const CLASSIC_LEVELS_DIR = "res://levels/classic/"
 
 @onready var walls_node = $Walls
 @onready var effects_node = $Effects # TODO: Should effects_node move with the rest of the level?
@@ -69,7 +71,7 @@ func _spawn_wall(x:int, y:int, wall: WallRes) -> int:
 	return -1
 
 func _check_win():
-	if(walls.count(null) == len(walls)):
+	if walls.count(null) == len(walls):
 		print("YOU WON")
 		status = GameStatus.WON
 
@@ -78,6 +80,7 @@ func _check_loss():
 		if i is Wall:
 			print("YOU LOST")
 			status = GameStatus.LOST
+			return
 
 func _on_wall_destroyed(_wall: Wall, index: int):
 	walls[index] = null

@@ -94,8 +94,11 @@ func _on_save_pressed():
 		level_res.walls[i.x+(max_y-i.y)*level_res.width] = level.walls[pos_to_index[i]].to_res()
 	if level_res.resource_path: ResourceSaver.save(level_res)
 	else:
-		print(ResourceSaver.save(level_res, "res://levels/"+level_res.name.to_snake_case()+".tres"))
-		print("res://levels/"+level_res.name.to_snake_case()+".tres")
+		if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
+			DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
+		var r = ResourceSaver.save(level_res, Level.CUSTOM_LEVELS_DIR+level_res.name.to_snake_case()+".tres")
+		if r:
+			print("Error saving level resource: ", r)
 	
 
 func _on_add_pressed():

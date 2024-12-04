@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cotyev0pavuix"]
+
+[ext_resource type="Texture2D" uid="uid://cmu783dcw8a5q" path="res://assets/ui/cross.svg" id="1_2ln5d"]
+[ext_resource type="Script" path="res://scripts/ui/go_home_button.gd" id="2_i3xud"]
+
+[node name="GoHomeButton" type="Button"]
+icon = ExtResource("1_2ln5d")
+script = ExtResource("2_i3xud")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

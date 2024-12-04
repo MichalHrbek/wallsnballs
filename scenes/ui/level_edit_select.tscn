@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh2oulc8yulwp"]
+[gd_scene load_steps=4 format=3 uid="uid://ccuo7eiqft4v5"]
 
-[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="1_k0adc"]
-[ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="2_utqmq"]
+[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="1_akuvi"]
+[ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_fwh76"]
+[ext_resource type="PackedScene" uid="uid://dy86jscp34qbw" path="res://scenes/ui/level_editor.tscn" id="2_3816r"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_vertical_guides_ = [284.0]
 
 [node name="Menu" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -27,21 +29,15 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 current_tab = 0
 
-[node name="Classic" type="ItemList" parent="Menu/TabContainer"]
+[node name="Custom" type="ItemList" parent="Menu/TabContainer"]
 layout_mode = 2
 allow_search = false
-script = ExtResource("1_k0adc")
+script = ExtResource("1_akuvi")
+level_dir = "user://levels/"
+level_scene = ExtResource("2_3816r")
 metadata/_tab_index = 0
 
-[node name="Custom" type="ItemList" parent="Menu/TabContainer"]
-visible = false
-layout_mode = 2
-allow_search = false
-script = ExtResource("1_k0adc")
-level_dir = "user://levels/"
-metadata/_tab_index = 1
-
-[node name="GoHomeButton" parent="." instance=ExtResource("2_utqmq")]
+[node name="GoHomeButton" parent="." instance=ExtResource("1_fwh76")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

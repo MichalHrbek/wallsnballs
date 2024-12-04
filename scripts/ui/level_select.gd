@@ -1,15 +1,18 @@
-extends Control
+extends ItemList
 
-@export var levels: Array[LevelRes] = []
+@export_enum(Level.CLASSIC_LEVELS_DIR, Level.CUSTOM_LEVELS_DIR)
+var level_dir: String = Level.CLASSIC_LEVELS_DIR
 
-@onready var _item_list: ItemList = %ItemList
+@export var level_scene = preload("res://scenes/game_static.tscn")
 
-const _level_scene = preload("res://scenes/game_static.tscn")
+var _levels: Array[LevelRes] = []
 
 func _ready():
-	for i in levels:
-		_item_list.add_item(i.name)
+	item_clicked.connect(_on_item_list_item_clicked)
+	for i in DirAccess.get_files_at(level_dir):
+		_levels.append(ResourceLoader.load(level_dir+i))
+		add_item(_levels[-1].name)
 
 func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
-	GlobalUiState.selected_level = levels[index]
-	get_tree().change_scene_to_packed(_level_scene)
+	GlobalUiState.selected_level = _levels[index]
+	get_tree().change_scene_to_packed(level_scene)
