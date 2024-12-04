@@ -34,4 +34,4 @@ unique_name_in_owner = true
 layout_mode = 2
 allow_search = false
 
-[connection signal="item_selected" from="Menu/PanelContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="item_clicked" from="Menu/PanelContainer/ItemList" to="." method="_on_item_list_item_clicked"]
