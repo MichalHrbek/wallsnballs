@@ -135,3 +135,7 @@ func _on_type_select_item_selected(index):
 func _on_health_value_changed(value):
 	if selected_index != -1:
 		level.walls[selected_index].health = value
+
+func _on_delete_dialog_confirmed():
+	if level_res.resource_path:
+		DirAccess.remove_absolute(level_res.resource_path)
