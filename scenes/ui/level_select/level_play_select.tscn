@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://balphcqmixrli"]
+
+[ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_ocqdk"]
+[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_3xqm2"]
+
+[node name="LevelSelect" instance=ExtResource("1_ocqdk")]
+
+[node name="TabContainer" parent="Menu" index="0"]
+current_tab = 0
+
+[node name="Classic" type="ItemList" parent="Menu/TabContainer" index="1"]
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_3xqm2")
+metadata/_tab_index = 0
+
+[node name="Custom" type="ItemList" parent="Menu/TabContainer" index="2"]
+visible = false
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_3xqm2")
+level_dir = "user://levels/"
+metadata/_tab_index = 1

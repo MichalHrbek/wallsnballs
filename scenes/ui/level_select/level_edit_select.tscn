@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cutq80rp8oth"]
+
+[ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_0g65h"]
+[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_kopnm"]
+[ext_resource type="PackedScene" uid="uid://dy86jscp34qbw" path="res://scenes/ui/level_editor.tscn" id="3_an7pb"]
+[ext_resource type="Texture2D" uid="uid://bx8pamutkpdmy" path="res://assets/icons/plus.png" id="4_a2wu5"]
+
+[node name="LevelSelect" instance=ExtResource("1_0g65h")]
+
+[node name="TabContainer" parent="Menu" index="0"]
+current_tab = 0
+
+[node name="Custom" type="ItemList" parent="Menu/TabContainer" index="1"]
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_kopnm")
+level_dir = "user://levels/"
+level_scene = ExtResource("3_an7pb")
+metadata/_tab_index = 0
+
+[node name="AddLevelButton" type="Button" parent="." index="2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 63.0
+offset_bottom = 63.0
+icon = ExtResource("4_a2wu5")

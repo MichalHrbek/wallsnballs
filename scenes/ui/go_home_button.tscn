@@ -1,10 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://cotyev0pavuix"]
 
-[ext_resource type="Texture2D" uid="uid://cmu783dcw8a5q" path="res://assets/ui/cross.svg" id="1_2ln5d"]
+[ext_resource type="Texture2D" uid="uid://mrh62bh1jlt8" path="res://assets/icons/door.png" id="1_6m0sl"]
 [ext_resource type="Script" path="res://scripts/ui/go_home_button.gd" id="2_i3xud"]
 
 [node name="GoHomeButton" type="Button"]
-icon = ExtResource("1_2ln5d")
+icon = ExtResource("1_6m0sl")
+icon_alignment = 1
 script = ExtResource("2_i3xud")
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Are you sure?"
+initial_position = 2
+size = Vector2i(200, 79)
+unresizable = true
+ok_button_text = "Leave"
+cancel_button_text = "Stay"
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="go_home"]

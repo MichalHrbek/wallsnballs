@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/ui/scene_changer.gd" id="1_g2bo3"]
 [ext_resource type="PackedScene" uid="uid://bg2hpjblc4id0" path="res://scenes/game_endless.tscn" id="2_t3ns2"]
-[ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select.tscn" id="3_xsi4h"]
-[ext_resource type="PackedScene" uid="uid://ccuo7eiqft4v5" path="res://scenes/ui/level_edit_select.tscn" id="4_gm2wn"]
+[ext_resource type="PackedScene" uid="uid://balphcqmixrli" path="res://scenes/ui/level_select/level_play_select.tscn" id="3_t3t12"]
+[ext_resource type="PackedScene" uid="uid://cutq80rp8oth" path="res://scenes/ui/level_select/level_edit_select.tscn" id="4_4lv6o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f7vd8"]
 font_size = 64
@@ -68,13 +68,13 @@ scene = ExtResource("2_t3ns2")
 layout_mode = 2
 text = "Select Level"
 script = ExtResource("1_g2bo3")
-scene = ExtResource("3_xsi4h")
+scene = ExtResource("3_t3t12")
 
 [node name="ButtonLevelEditor" type="Button" parent="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Level Editor"
 script = ExtResource("1_g2bo3")
-scene = ExtResource("4_gm2wn")
+scene = ExtResource("4_4lv6o")
 
 [connection signal="pressed" from="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonEndless" to="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonEndless" method="_change_scene"]
 [connection signal="pressed" from="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" to="VBoxContainer/Menu/PanelContainer/MarginContainer/VBoxContainer/ButtonLevelSelect" method="_change_scene"]

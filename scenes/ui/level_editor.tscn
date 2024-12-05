@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy86jscp34qbw"]
+[gd_scene load_steps=13 format=3 uid="uid://dy86jscp34qbw"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_q8fmx"]
 [ext_resource type="Script" path="res://scripts/ui/level_editor.gd" id="1_u4qq4"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_kxfvp"]
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="4_171m4"]
-[ext_resource type="Texture2D" uid="uid://djqd38dew15d0" path="res://assets/arrows/arrow_up.svg" id="5_2736c"]
-[ext_resource type="Texture2D" uid="uid://bioi7023fdf0k" path="res://assets/arrows/arrow_down.svg" id="6_d3gbo"]
+[ext_resource type="Texture2D" uid="uid://bx8pamutkpdmy" path="res://assets/icons/plus.png" id="5_aaujc"]
+[ext_resource type="Texture2D" uid="uid://cll2vgkqsfmus" path="res://assets/icons/save.png" id="5_bhbo2"]
+[ext_resource type="Texture2D" uid="uid://c3etqj4rti6vb" path="res://assets/icons/up.png" id="5_n4arx"]
+[ext_resource type="Texture2D" uid="uid://b2gw5qo7ia7a2" path="res://assets/icons/trashcanOpen.png" id="6_3as1b"]
+[ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="6_3p7cu"]
+[ext_resource type="Texture2D" uid="uid://cvkhr4cwlaat6" path="res://assets/icons/minus.png" id="6_t5gso"]
 [ext_resource type="PackedScene" uid="uid://bswmhrvghcrj4" path="res://scenes/ui/orientation_select.tscn" id="7_uehy5"]
 [ext_resource type="PackedScene" uid="uid://b02r6574rp0fy" path="res://scenes/ui/type_select.tscn" id="8_87ve6"]
 
@@ -106,13 +110,38 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer"]
 layout_mode = 2
 
-[node name="GoHomeButton" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer" instance=ExtResource("4_171m4")]
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+
+[node name="GoHomeButton" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_171m4")]
+layout_mode = 2
+confirm = true
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Save" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("5_bhbo2")
+icon_alignment = 1
+
+[node name="Delete" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("6_3as1b")
+icon_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -134,14 +163,28 @@ value = 25.0
 rounded = true
 suffix = "balls"
 
-[node name="Save" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer4"]
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Save"
+icon = ExtResource("5_n4arx")
+icon_alignment = 1
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="Down" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_vertical = 3
+icon = ExtResource("6_3p7cu")
+icon_alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -150,32 +193,18 @@ size_flags_horizontal = 4
 [node name="Add" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Add"
+icon = ExtResource("5_aaujc")
+icon_alignment = 1
 
 [node name="Remove" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Remove"
+icon = ExtResource("6_t5gso")
+icon_alignment = 1
 
-[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="VSeparator5" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Up" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-icon = ExtResource("5_2736c")
-
-[node name="Down" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-icon = ExtResource("6_d3gbo")
-
-[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 15
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -203,11 +232,11 @@ rounded = true
 editable = false
 suffix = "hp"
 
-[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer4/Save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="_on_add_pressed"]
-[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2/Up" to="." method="_move" binds= [-1]]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2/Down" to="." method="_move" binds= [1]]
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Remove" to="." method="_on_remove_pressed"]
 [connection signal="item_selected" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/OrientationSelect" to="." method="_on_orientation_select_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/TypeSelect" to="." method="_on_type_select_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/Health" to="." method="_on_health_value_changed"]

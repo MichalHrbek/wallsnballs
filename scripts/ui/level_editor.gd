@@ -96,14 +96,21 @@ func _on_save_pressed():
 	else:
 		if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
 			DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
-		var r = ResourceSaver.save(level_res, Level.CUSTOM_LEVELS_DIR+level_res.name.to_snake_case()+".tres")
+		
+		var r = -1
+		if level_res.resource_path: r = ResourceSaver.save(level_res)
+		r = ResourceSaver.save(level_res, Level.CUSTOM_LEVELS_DIR+("custom_level_%x" % [randi()])+".tres")
 		if r:
 			print("Error saving level resource: ", r)
 	
 
 func _on_add_pressed():
 	if selected_index == -1:
-		_add_wall(selected.x, selected.y, WallRes.new())
+		var res = WallRes.new()
+		res.health = int(_health.value)
+		res.type = _type_select.selected
+		res.orientation = _orientaion_select.selected
+		_add_wall(selected.x, selected.y, res)
 		_update_selection()
 
 func _on_remove_pressed():
