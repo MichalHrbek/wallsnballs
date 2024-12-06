@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://do3tux3la5xub"]
 
 [ext_resource type="Script" path="res://scripts/ui/scene_changer.gd" id="1_g2bo3"]
-[ext_resource type="PackedScene" uid="uid://bg2hpjblc4id0" path="res://scenes/game_endless.tscn" id="2_t3ns2"]
+[ext_resource type="PackedScene" uid="uid://bg2hpjblc4id0" path="res://scenes/game/game_endless.tscn" id="2_t3ns2"]
 [ext_resource type="PackedScene" uid="uid://balphcqmixrli" path="res://scenes/ui/level_select/level_play_select.tscn" id="3_t3t12"]
 [ext_resource type="PackedScene" uid="uid://cutq80rp8oth" path="res://scenes/ui/level_select/level_edit_select.tscn" id="4_4lv6o"]
 

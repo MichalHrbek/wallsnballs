@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=6 format=3 uid="uid://cxstx0n0efcxm"]
 
+[ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_ennut"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_jnnx7"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="2_peftv"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_wb8a3"]
+[ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="5_atbhd"]
 
 [node name="GameTemplate" type="Node2D"]
 
@@ -30,6 +32,30 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameLayer/VBoxContainer/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoHomeButton" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer" instance=ExtResource("1_ennut")]
+layout_mode = 2
+confirm = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer"]
 layout_mode = 2
@@ -77,3 +103,27 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0.180392, 0.188235, 0.286275, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GameLayer/VBoxContainer/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RecallButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("5_atbhd")
+icon_alignment = 1
+
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
