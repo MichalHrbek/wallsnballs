@@ -32,7 +32,7 @@ theme_override_constants/margin_top = 20
 [node name="Label" type="Label" parent="VBoxContainer/Header"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Walls N Balls"
+text = "Walls n Balls"
 label_settings = SubResource("LabelSettings_f7vd8")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
