@@ -12,6 +12,7 @@ class_name BallSpawner extends Node2D
 var balls_returned: int = 0
 var balls_fired: int = 0
 var _started_shooting: bool = false
+var _started_aiming: bool = false
 var _direction: Vector2
 var _deployed: Array[Ball] = []
 
@@ -33,10 +34,6 @@ func _process(delta):
 		add_child(ball)
 		timer -= wait_time
 		_update_label()
-		
-	if not _started_shooting:
-		#_update_aim_hint()
-		pass
 
 func _update_aim_hint():
 	var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
@@ -52,13 +49,15 @@ func _update_aim_hint():
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		if not _started_shooting:
+		if not _started_shooting and (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
+			_started_aiming = true
 			_update_aim_hint()
+			line.visible = true
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
+		if (event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed):
 			recall()
-		if not _started_shooting:
-			if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+		if _started_aiming and not _started_shooting:
+			if (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 				_direction = (event.global_position - start_ball.global_position).normalized()
 				_started_shooting = true
 				line.visible = false
@@ -87,8 +86,8 @@ func reset():
 	balls_returned = 0
 	balls_fired = 0
 	_started_shooting = false
-	_update_aim_hint()
-	line.visible = true
+	_started_aiming = false
+	line.visible = false
 	_update_label()
 
 func _ready():

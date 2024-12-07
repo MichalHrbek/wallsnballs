@@ -55,6 +55,8 @@ size_flags_horizontal = 3
 
 [node name="GoHomeButton" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer" instance=ExtResource("1_ennut")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 confirm = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer"]
@@ -125,6 +127,7 @@ alignment = 1
 [node name="RecallButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 icon = ExtResource("5_atbhd")
 icon_alignment = 1
 
