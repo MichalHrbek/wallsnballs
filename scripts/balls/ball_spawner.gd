@@ -1,14 +1,17 @@
 class_name BallSpawner extends Node2D
 
 @export var wait_time: float = 0.02
+@export var level: Level
+@export var n_balls: int = 25
+@export var aim_hint_length: float = 150
+
 @onready var timer: float = 0
 @onready var line = $Line2D
 @onready var start_ball = $StartBall
 @onready var label = %Label
 @onready var label_anchor = $LabelAnchor
-@export var level: Level
-@export var n_balls: int = 25
 @onready var balls_left: int = n_balls
+
 var balls_returned: int = 0
 var balls_fired: int = 0
 var _started_shooting: bool = false
@@ -18,7 +21,7 @@ var _deployed: Array[Ball] = []
 
 func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(origin, to_global(dir*999999), 0b100, exclude)
+	var query = PhysicsRayQueryParameters2D.create(origin, origin+dir*9999, 0b100, exclude)
 	var result = space_state.intersect_ray(query)
 	return result
 
@@ -36,18 +39,16 @@ func _process(delta):
 		_update_label()
 
 func _update_aim_hint():
-	var dir = (get_global_mouse_position() - start_ball.global_position).normalized()
-	if dir != Vector2.ZERO:
-		var r1 = _ray(start_ball.global_position, dir)
+	if _direction != Vector2.ZERO:
+		var r1 = _ray(start_ball.global_position, _direction)
 		if r1:
-			var r2 = _ray(r1.position, dir.bounce(r1.normal), [r1.collider.get_rid()])
-			if r2:
-				line.points[0] = to_local(start_ball.global_position)
-				line.points[1] = to_local(r1.position)
-				line.points[2] = to_local(r2.position)
-	
+			line.points[0] = to_local(start_ball.global_position)
+			line.points[1] = to_local(r1.position)
+			line.points[2] = to_local(r1.position+_direction.bounce(r1.normal)*aim_hint_length)
 
 func _unhandled_input(event):
+	if event is InputEventMouse and not _started_shooting:
+		_direction = (event.global_position - start_ball.global_position).normalized()
 	if event is InputEventMouseMotion:
 		if not _started_shooting and (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
 			_started_aiming = true
@@ -58,7 +59,6 @@ func _unhandled_input(event):
 			recall()
 		if _started_aiming and not _started_shooting:
 			if (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
-				_direction = (event.global_position - start_ball.global_position).normalized()
 				_started_shooting = true
 				line.visible = false
 
