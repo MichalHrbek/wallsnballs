@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=8 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_ennut"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_jnnx7"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="2_peftv"]
+[ext_resource type="Script" path="res://scripts/ui/game_over_dialog.gd" id="3_fu1a8"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_wb8a3"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="5_atbhd"]
 [ext_resource type="Texture2D" uid="uid://ove5ktpl6peg" path="res://assets/icons/fastForward.png" id="6_gm6fl"]
@@ -82,6 +83,26 @@ mouse_filter = 2
 z_index = -1
 script = ExtResource("1_jnnx7")
 
+[node name="LoseDialog" type="ConfirmationDialog" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game"]
+auto_translate_mode = 1
+title = "You lost :("
+initial_position = 2
+size = Vector2i(200, 79)
+unresizable = true
+ok_button_text = "Try again"
+cancel_button_text = "Leave"
+script = ExtResource("3_fu1a8")
+
+[node name="WinDialog" type="ConfirmationDialog" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game"]
+auto_translate_mode = 1
+title = "You won :)"
+initial_position = 2
+size = Vector2i(200, 79)
+unresizable = true
+ok_button_text = "Leave"
+cancel_button_text = "Play again"
+script = ExtResource("3_fu1a8")
+
 [node name="BallSpawner" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" node_paths=PackedStringArray("level") instance=ExtResource("2_peftv")]
 level = NodePath("../Level")
 
@@ -139,5 +160,9 @@ size_flags_vertical = 4
 icon = ExtResource("6_gm6fl")
 icon_alignment = 1
 
+[connection signal="canceled" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" method="leave"]
+[connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" method="try_again"]
+[connection signal="canceled" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="try_again"]
+[connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="leave"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [2.0]]

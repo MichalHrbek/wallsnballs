@@ -51,7 +51,6 @@ func _ready():
 	if !level_res:
 		if GlobalUiState.selected_level:
 			level_res = GlobalUiState.selected_level
-			GlobalUiState.selected_level = null
 		else:
 			level_res = LevelRes.new()
 	
