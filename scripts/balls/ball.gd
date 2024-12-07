@@ -7,17 +7,20 @@ class_name Ball extends CharacterBody2D
 # For animating balls returning to their origin
 @export var return_duration: float = 0.3
 var _destroyed = false
+var _rem: float = 0 # The distance the ball needs to catch up in the next tick after hitting a wall
 
 func _physics_process(delta):
 	if not _destroyed:
-		var goal = to_global(direction*speed*delta/scale.x)
+		var goal = to_global(direction*((speed*delta/scale.x)+_rem))
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(global_position, goal, mask)
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is Wall and result.collider.hit(self):
 			global_position = lerp(global_position, result.position, 0.99) # :( Close enough
 			direction = direction.bounce(result.normal)
+			_rem = (goal-result.position).length()
 		else:
+			_rem = 0
 			global_position = goal
 
 func destroy():
