@@ -165,4 +165,4 @@ icon_alignment = 1
 [connection signal="canceled" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="try_again"]
 [connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="leave"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
-[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [2.0]]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [1.4]]
