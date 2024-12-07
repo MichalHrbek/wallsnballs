@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=7 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_ennut"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_jnnx7"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="2_peftv"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_wb8a3"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="5_atbhd"]
+[ext_resource type="Texture2D" uid="uid://ove5ktpl6peg" path="res://assets/icons/fastForward.png" id="6_gm6fl"]
 
 [node name="GameTemplate" type="Node2D"]
 
@@ -131,4 +132,12 @@ size_flags_vertical = 4
 icon = ExtResource("5_atbhd")
 icon_alignment = 1
 
+[node name="FastForwardButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("6_gm6fl")
+icon_alignment = 1
+
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [2.0]]
