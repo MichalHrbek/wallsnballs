@@ -3,7 +3,6 @@ class_name BallSpawner extends Node2D
 @export var wait_time: float = 0.02
 @export var level: Level
 @export var n_balls: int = 25
-@export var aim_hint_length: float = 150
 
 @onready var timer: float = 0
 @onready var line = $Line2D
@@ -18,6 +17,9 @@ var _started_shooting: bool = false
 var _started_aiming: bool = false
 var _direction: Vector2
 var _deployed: Array[Ball] = []
+
+const aim_hint_length: float = 150
+const angle_cutoff: float = deg_to_rad(10)
 
 func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 	var space_state = get_world_2d().direct_space_state
@@ -48,12 +50,18 @@ func _update_aim_hint():
 
 func _unhandled_input(event):
 	if event is InputEventMouse and not _started_shooting:
-		_direction = (event.global_position - start_ball.global_position).normalized()
-	if event is InputEventMouseMotion:
-		if not _started_shooting and (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
-			_started_aiming = true
-			_update_aim_hint()
-			line.visible = true
+		var aim_dir = (event.global_position - start_ball.global_position).normalized()
+		# Sharp angle cutoff
+		var angle = aim_dir.angle()
+		if angle > angle_cutoff-PI and angle < -angle_cutoff:
+			_direction = aim_dir
+			if not _started_shooting and (event.button_mask & MOUSE_BUTTON_MASK_LEFT):
+				_started_aiming = true
+				_update_aim_hint()
+				line.visible = true
+		else:
+			_started_aiming = false
+			line.visible = false
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed):
 			recall()

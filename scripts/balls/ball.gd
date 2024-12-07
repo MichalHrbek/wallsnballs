@@ -18,7 +18,7 @@ func _physics_process(delta):
 		if result and result.collider is Wall and result.collider.hit(self):
 			global_position = lerp(global_position, result.position, 0.99) # :( Close enough
 			direction = direction.bounce(result.normal)
-			_rem = (goal-result.position).length()
+			_rem = (goal-global_position).length()
 		else:
 			_rem = 0
 			global_position = goal
