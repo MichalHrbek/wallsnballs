@@ -1,5 +1,7 @@
 # Walls n Balls
 A breakout-like game inspired by [Bricks n Balls](https://play.google.com/store/apps/details?id=com.peoplefun.bricksnballs)
+
+![App icon](assets/app_icon.svg)
 ### Features
 - Level editor
 - Endless mode
