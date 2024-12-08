@@ -183,4 +183,4 @@ icon_alignment = 1
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" method="release_focus"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" method="release_focus"]
-[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [1.4]]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="fast_forward" binds= [1.4]]

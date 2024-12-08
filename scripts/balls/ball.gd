@@ -8,15 +8,16 @@ class_name Ball extends CharacterBody2D
 @export var return_duration: float = 0.3
 var _destroyed = false
 var _rem: float = 0 # The distance the ball needs to catch up in the next tick after hitting a wall
+var ff_ratio: float = 1.0 # Fast forward speedup
 
 func _physics_process(delta):
 	if not _destroyed:
-		var goal = to_global(direction*((speed*delta/scale.x)+_rem))
+		var goal = global_position + direction*(speed*ff_ratio*delta + _rem)
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(global_position, goal, mask)
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is Wall and result.collider.hit(self):
-			global_position = lerp(global_position, result.position, 0.99) # :( Close enough
+			global_position = lerp(global_position, result.position, (1.0-(0.02*ff_ratio))) # :( Close enough
 			direction = direction.bounce(result.normal)
 			_rem = (goal-global_position).length()
 		else:

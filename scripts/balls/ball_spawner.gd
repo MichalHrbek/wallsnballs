@@ -17,9 +17,11 @@ var _started_shooting: bool = false
 var _started_aiming: bool = false
 var _direction: Vector2
 var _deployed: Array[Ball] = []
+var _ff_ratio: float = 1
 
 const aim_hint_length: float = 150
 const angle_cutoff: float = deg_to_rad(10)
+const max_ff: float = 10
 
 func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 	var space_state = get_world_2d().direct_space_state
@@ -28,16 +30,22 @@ func _ray(origin: Vector2, dir: Vector2, exclude: Array[RID]=[]) -> Dictionary:
 	return result
 
 func _process(delta):
-	timer += delta
-	if _started_shooting and timer>=wait_time and balls_left > 0:
+	if _started_shooting:
+		timer += delta*_ff_ratio
+	if _started_shooting and timer>=wait_time and balls_left:
+		var n = int(timer/wait_time)
 		# Firing the balls
-		balls_left -= 1
-		balls_fired += 1
-		var ball: Ball = start_ball.duplicate()
-		ball.direction = _direction
-		_deployed.append(ball)
-		add_child(ball)
-		timer -= wait_time
+		for i in n:
+			if not balls_left: break
+			balls_left -= 1
+			balls_fired += 1
+			var ball: Ball = start_ball.duplicate()
+			ball.direction = _direction
+			ball.ff_ratio = _ff_ratio
+			_deployed.append(ball)
+			add_child(ball)
+			timer -= wait_time
+			ball._rem = timer*ball.speed*_ff_ratio
 		_update_label()
 
 func _update_aim_hint():
@@ -67,6 +75,7 @@ func _unhandled_input(event):
 			recall()
 		if _started_aiming and not _started_shooting:
 			if (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
+				_ff_ratio = 1
 				_started_shooting = true
 				line.visible = false
 
@@ -93,6 +102,8 @@ func reset():
 	balls_left = n_balls
 	balls_returned = 0
 	balls_fired = 0
+	_ff_ratio = 1
+	timer = 0
 	_started_shooting = false
 	_started_aiming = false
 	line.visible = false
@@ -112,3 +123,10 @@ func add_temp_ball(ball: Ball):
 func add_ball():
 	n_balls += 1
 	_update_label()
+
+func fast_forward(k: float):
+	_ff_ratio *= k
+	_ff_ratio = minf(max_ff, _ff_ratio)
+	for i in _deployed:
+		if is_instance_valid(i):
+			i.ff_ratio = _ff_ratio
