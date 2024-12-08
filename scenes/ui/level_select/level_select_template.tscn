@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh2oulc8yulwp"]
+[gd_scene load_steps=3 format=3 uid="uid://dh2oulc8yulwp"]
 
+[ext_resource type="Theme" uid="uid://dqwqcbmye67yw" path="res://assets/menu_theme.tres" id="1_0w1or"]
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="2_utqmq"]
 
 [node name="LevelSelect" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0w1or")
 
 [node name="Menu" type="MarginContainer" parent="."]
 layout_mode = 1
