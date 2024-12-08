@@ -40,12 +40,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer"]
 layout_mode = 2
@@ -55,10 +57,14 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GoHomeButton" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer" instance=ExtResource("1_ennut")]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="GoHomeButton" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/HBoxContainer/AspectRatioContainer" instance=ExtResource("1_ennut")]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
 confirm = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer"]
@@ -130,33 +136,43 @@ grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0.180392, 0.188235, 0.286275, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="GameLayer/VBoxContainer/BottomBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/BottomBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -360.0
+offset_right = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer"]
-layout_mode = 2
 alignment = 1
 
-[node name="RecallButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameLayer/VBoxContainer/BottomBar/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 25
+
+[node name="RecallButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
 icon = ExtResource("5_atbhd")
 icon_alignment = 1
 
-[node name="FastForwardButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="GameLayer/VBoxContainer/BottomBar/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="FastForwardButton" type="Button" parent="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
 icon = ExtResource("6_gm6fl")
 icon_alignment = 1
 
@@ -164,5 +180,7 @@ icon_alignment = 1
 [connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" method="try_again"]
 [connection signal="canceled" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="try_again"]
 [connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="leave"]
-[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
-[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/MarginContainer/HBoxContainer/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [1.4]]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" method="release_focus"]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" method="release_focus"]
+[connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" method="change_speed" binds= [1.4]]
