@@ -1,5 +1,7 @@
-# Walls n Balls
+# Walls n Balls - 
 A breakout-like game inspired by [Bricks n Balls](https://play.google.com/store/apps/details?id=com.peoplefun.bricksnballs)
+
+### [Play on itch.io](https://kaasos.itch.io/walls-n-balls)
 
 ![App icon](assets/app_icon.svg)
 ### Features
