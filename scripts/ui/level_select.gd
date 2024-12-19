@@ -8,11 +8,14 @@ var level_dir: String = Level.CLASSIC_LEVELS_DIR
 var _levels: Array[LevelRes] = []
 
 func _ready():
+	GlobalUiState.selected_level = null
 	item_clicked.connect(_on_item_list_item_clicked)
 	for i in DirAccess.get_files_at(level_dir):
 		_levels.append(load(level_dir+i))
-		#_levels.append(ResourceLoader.load(level_dir+i))
-		add_item(_levels[-1].name)
+		var label = _levels[-1].name
+		if OS.is_debug_build():
+			label += " | " + i
+		add_item(label)
 
 func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
 	GlobalUiState.selected_level = _levels[index]

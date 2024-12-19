@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbqchg25k21m3"]
+
+[ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_6dp5k"]
+[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_gvdbi"]
+[ext_resource type="PackedScene" uid="uid://dy86jscp34qbw" path="res://scenes/game/level_editor.tscn" id="3_pc10t"]
+
+[node name="LevelSelect" instance=ExtResource("1_6dp5k")]
+
+[node name="TabContainer" parent="Menu" index="0"]
+current_tab = 0
+
+[node name="Edit Classic" type="ItemList" parent="Menu/TabContainer" index="1"]
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_gvdbi")
+level_scene = ExtResource("3_pc10t")
+metadata/_tab_index = 0
