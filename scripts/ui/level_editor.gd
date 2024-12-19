@@ -2,7 +2,7 @@ extends Control
 
 @onready var level = %Level
 @onready var _game_area = %GameArea
-@export var level_res: LevelRes
+var level_res: LevelRes
 
 const block_scene = preload("res://scenes/ui/editor_wall_block.tscn")
 var pos_to_index = {}
@@ -91,17 +91,14 @@ func _on_save_pressed():
 	level_res.walls.resize(level_res.height*level_res.width)
 	for i in pos_to_index:
 		level_res.walls[i.x+(max_y-i.y)*level_res.width] = level.walls[pos_to_index[i]].to_res()
-	if level_res.resource_path: ResourceSaver.save(level_res)
-	else:
-		if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
-			DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
-		
-		var r = -1
-		if level_res.resource_path: r = ResourceSaver.save(level_res)
-		r = ResourceSaver.save(level_res, Level.CUSTOM_LEVELS_DIR+("custom_level_%x" % [randi()])+".tres")
-		if r:
-			print("Error saving level resource: ", r)
 	
+	if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
+		DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
+	
+	if not level_res.file_path:
+		level_res.file_path = Level.CUSTOM_LEVELS_DIR+("custom_level_%x" % [randi()])+".lvl.txt"
+	var file = FileAccess.open(level_res.file_path, FileAccess.WRITE)
+	file.store_string(level_res.export_format())
 
 func _on_add_pressed():
 	if selected_index == -1:
@@ -136,5 +133,5 @@ func _on_health_value_changed(value):
 		level.walls[selected_index].health = value
 
 func _on_delete_dialog_confirmed():
-	if level_res.resource_path:
-		DirAccess.remove_absolute(level_res.resource_path)
+	if level_res.file_path:
+		DirAccess.remove_absolute(level_res.file_path)

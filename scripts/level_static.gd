@@ -1,6 +1,6 @@
 class_name LevelStatic extends Level
 
-@export var level_res: LevelRes
+var level_res: LevelRes
 
 func _ready():
 	if !level_res:
