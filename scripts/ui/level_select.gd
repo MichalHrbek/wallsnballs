@@ -1,7 +1,7 @@
 extends ItemList
 
-@export_enum(Level.CLASSIC_LEVELS_DIR, Level.CUSTOM_LEVELS_DIR)
-var level_dir: String = Level.CLASSIC_LEVELS_DIR
+@export_enum(LevelRes.EASY_LEVELS_DIR, LevelRes.NORMAL_LEVELS_DIR, LevelRes.HARD_LEVELS_DIR, LevelRes.CUSTOM_LEVELS_DIR)
+var level_dir: String = LevelRes.EASY_LEVELS_DIR
 
 @export var level_scene = preload("res://scenes/game/game_static.tscn")
 

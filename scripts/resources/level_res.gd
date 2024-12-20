@@ -11,6 +11,11 @@ var file_path: String
 #  6  7  8  9 10 11
 #  0  1  2  3  4  5
 
+const CUSTOM_LEVELS_DIR = "user://levels/"
+const EASY_LEVELS_DIR = "res://levels/easy/"
+const NORMAL_LEVELS_DIR = "res://levels/normal/"
+const HARD_LEVELS_DIR = "res://levels/hard/"
+
 static func parse_format(data: String, path: String = "") -> LevelRes:
 	var level = LevelRes.new()
 	if path:

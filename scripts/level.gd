@@ -34,9 +34,6 @@ const _slide_duration: float = 0.3
 const GAME_HEIGHT = 12
 const GAME_WIDTH = 10
 
-const CUSTOM_LEVELS_DIR = "user://levels/"
-const CLASSIC_LEVELS_DIR = "res://levels/classic/"
-
 @onready var walls_node = $Walls
 @onready var effects_node = $Effects # TODO: Should effects_node move with the rest of the level?
 

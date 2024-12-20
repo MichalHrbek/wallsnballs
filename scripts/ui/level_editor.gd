@@ -96,11 +96,11 @@ func write_to_res():
 func _on_save_pressed():
 	write_to_res()
 	
-	if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
-		DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
+	if !DirAccess.dir_exists_absolute(LevelRes.CUSTOM_LEVELS_DIR):
+		DirAccess.make_dir_absolute(LevelRes.CUSTOM_LEVELS_DIR)
 	
 	if not level_res.file_path:
-		level_res.file_path = Level.CUSTOM_LEVELS_DIR+("custom_level_%x" % [randi()])+".lvl.txt"
+		level_res.file_path = LevelRes.CUSTOM_LEVELS_DIR+("custom_level_%x" % [randi()])+".lvl.txt"
 	var file = FileAccess.open(level_res.file_path, FileAccess.WRITE)
 	file.store_string(level_res.export_format())
 

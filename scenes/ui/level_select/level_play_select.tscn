@@ -8,16 +8,32 @@
 [node name="TabContainer" parent="Menu" index="0"]
 current_tab = 0
 
-[node name="Classic" type="ItemList" parent="Menu/TabContainer" index="1"]
+[node name="Easy" type="ItemList" parent="Menu/TabContainer" index="1"]
 layout_mode = 2
 allow_search = false
 script = ExtResource("2_3xqm2")
 metadata/_tab_index = 0
 
-[node name="Custom" type="ItemList" parent="Menu/TabContainer" index="2"]
+[node name="Normal" type="ItemList" parent="Menu/TabContainer" index="2"]
+visible = false
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_3xqm2")
+level_dir = "res://levels/normal/"
+metadata/_tab_index = 1
+
+[node name="Hard" type="ItemList" parent="Menu/TabContainer" index="3"]
+visible = false
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_3xqm2")
+level_dir = "res://levels/hard/"
+metadata/_tab_index = 2
+
+[node name="Custom" type="ItemList" parent="Menu/TabContainer" index="4"]
 visible = false
 layout_mode = 2
 allow_search = false
 script = ExtResource("2_3xqm2")
 level_dir = "user://levels/"
-metadata/_tab_index = 1
+metadata/_tab_index = 3

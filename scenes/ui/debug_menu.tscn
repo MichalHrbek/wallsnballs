@@ -9,9 +9,27 @@
 [node name="TabContainer" parent="Menu" index="0"]
 current_tab = 0
 
-[node name="Edit Classic" type="ItemList" parent="Menu/TabContainer" index="1"]
+[node name="Edit Easy" type="ItemList" parent="Menu/TabContainer" index="1"]
 layout_mode = 2
 allow_search = false
 script = ExtResource("2_gvdbi")
 level_scene = ExtResource("3_pc10t")
 metadata/_tab_index = 0
+
+[node name="Edit Normal" type="ItemList" parent="Menu/TabContainer" index="2"]
+visible = false
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_gvdbi")
+level_dir = "res://levels/normal/"
+level_scene = ExtResource("3_pc10t")
+metadata/_tab_index = 1
+
+[node name="Edit Hard" type="ItemList" parent="Menu/TabContainer" index="3"]
+visible = false
+layout_mode = 2
+allow_search = false
+script = ExtResource("2_gvdbi")
+level_dir = "res://levels/hard/"
+level_scene = ExtResource("3_pc10t")
+metadata/_tab_index = 2
