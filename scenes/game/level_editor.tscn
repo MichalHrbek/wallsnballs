@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dy86jscp34qbw"]
+[gd_scene load_steps=19 format=3 uid="uid://dy86jscp34qbw"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_q8fmx"]
 [ext_resource type="Script" path="res://scripts/ui/level_editor.gd" id="1_u4qq4"]
@@ -14,6 +14,21 @@
 [ext_resource type="Texture2D" uid="uid://cvkhr4cwlaat6" path="res://assets/icons/minus.png" id="6_t5gso"]
 [ext_resource type="PackedScene" uid="uid://bswmhrvghcrj4" path="res://scenes/ui/orientation_select.tscn" id="7_uehy5"]
 [ext_resource type="PackedScene" uid="uid://b02r6574rp0fy" path="res://scenes/ui/type_select.tscn" id="8_87ve6"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_tiqwt"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_h7cnl"]
+events = [SubResource("InputEventKey_tiqwt")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_xhk25"]
+device = -1
+keycode = 4194312
+
+[sub_resource type="Shortcut" id="Shortcut_yhbpv"]
+events = [SubResource("InputEventKey_xhk25")]
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -214,12 +229,14 @@ size_flags_horizontal = 4
 [node name="Add" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+shortcut = SubResource("Shortcut_h7cnl")
 icon = ExtResource("5_aaujc")
 icon_alignment = 1
 
 [node name="Remove" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+shortcut = SubResource("Shortcut_yhbpv")
 icon = ExtResource("6_t5gso")
 icon_alignment = 1
 
