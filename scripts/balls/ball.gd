@@ -17,9 +17,12 @@ func _physics_process(delta):
 		var query = PhysicsRayQueryParameters2D.create(global_position, goal, mask)
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is Wall and result.collider.hit(self):
-			global_position = lerp(global_position, result.position, (1.0-(0.02*ff_ratio))) # :( Close enough
-			direction = direction.bounce(result.normal)
-			_rem = (goal-global_position).length()
+			if result.normal == Vector2.ZERO:
+				print_debug("0,0 normal")
+			else:
+				global_position = lerp(global_position, result.position, (1.0-(0.02*ff_ratio))) # :( Close enough
+				direction = direction.bounce(result.normal)
+				_rem = (goal-global_position).length()
 		else:
 			_rem = 0
 			global_position = goal

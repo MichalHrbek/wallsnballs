@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cutq80rp8oth"]
+[gd_scene load_steps=9 format=3 uid="uid://cutq80rp8oth"]
 
 [ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_0g65h"]
 [ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_kopnm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/ui/level_select/edit_new_level_button.gd" id="5_npnft"]
 [ext_resource type="Texture2D" uid="uid://cde6ka1dqjs1g" path="res://assets/icons/import.png" id="6_0856u"]
 [ext_resource type="Script" path="res://scripts/ui/level_import.gd" id="7_xawq7"]
+[ext_resource type="Theme" uid="uid://b5rdw2src0k2l" path="res://assets/popup_theme.tres" id="8_01a8b"]
 
 [node name="LevelSelect" instance=ExtResource("1_0g65h")]
 
@@ -36,14 +37,32 @@ script = ExtResource("5_npnft")
 [node name="ImportLevelButton" type="Button" parent="HBoxContainer" index="1"]
 layout_mode = 2
 icon = ExtResource("6_0856u")
-script = ExtResource("7_xawq7")
 
 [node name="AcceptDialog" type="AcceptDialog" parent="HBoxContainer/ImportLevelButton" index="0"]
 title = "Error"
 initial_position = 2
-size = Vector2i(196, 124)
+size = Vector2i(212, 100)
+theme = ExtResource("8_01a8b")
 dialog_text = "The level data is not valid"
 
+[node name="ImportDialog" type="AcceptDialog" parent="HBoxContainer/ImportLevelButton" index="1"]
+auto_translate_mode = 1
+title = "Import"
+initial_position = 2
+size = Vector2i(200, 150)
+theme = ExtResource("8_01a8b")
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/ImportLevelButton/ImportDialog" index="3"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 101.0
+size_flags_vertical = 3
+placeholder_text = "Level code"
+script = ExtResource("7_xawq7")
+
 [connection signal="pressed" from="HBoxContainer/EditNewLevelButton" to="HBoxContainer/EditNewLevelButton" method="_on_pressed"]
-[connection signal="invalid_data" from="HBoxContainer/ImportLevelButton" to="HBoxContainer/ImportLevelButton/AcceptDialog" method="set_visible" binds= [true]]
-[connection signal="pressed" from="HBoxContainer/ImportLevelButton" to="HBoxContainer/ImportLevelButton" method="import_from_clipboard"]
+[connection signal="pressed" from="HBoxContainer/ImportLevelButton" to="HBoxContainer/ImportLevelButton/ImportDialog" method="show"]
+[connection signal="confirmed" from="HBoxContainer/ImportLevelButton/ImportDialog" to="HBoxContainer/ImportLevelButton/ImportDialog/LineEdit" method="import"]
+[connection signal="focus_entered" from="HBoxContainer/ImportLevelButton/ImportDialog/LineEdit" to="HBoxContainer/ImportLevelButton/ImportDialog/LineEdit" method="_on_focus_entered"]
+[connection signal="invalid_data" from="HBoxContainer/ImportLevelButton/ImportDialog/LineEdit" to="HBoxContainer/ImportLevelButton/AcceptDialog" method="show"]

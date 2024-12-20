@@ -66,7 +66,7 @@ static func import_share(data: String) -> LevelRes:
 	decoded.sha1_text()
 	var check = decoded.substr(0,40)
 	var level_data = decoded.substr(41)
-	print(check, " - ", level_data.sha1_text())
+	print_debug(check, " - ", level_data.sha1_text())
 	if check == level_data.sha1_text():
 		return parse_format(decoded.substr(41))
 	else:

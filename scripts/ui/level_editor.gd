@@ -76,7 +76,7 @@ func _add_wall(x,y,res:WallRes) -> int:
 		index_to_pos[index] = Vector2i(x,y)
 	return index
 
-func _on_save_pressed():
+func write_to_res():
 	level_res.balls = int(_balls.value)
 	level_res.name = _name.text
 	
@@ -92,6 +92,9 @@ func _on_save_pressed():
 	level_res.walls.resize(level_res.height*level_res.width)
 	for i in pos_to_index:
 		level_res.walls[i.x+(max_y-i.y)*level_res.width] = level.walls[pos_to_index[i]].to_res()
+
+func _on_save_pressed():
+	write_to_res()
 	
 	if !DirAccess.dir_exists_absolute(Level.CUSTOM_LEVELS_DIR):
 		DirAccess.make_dir_absolute(Level.CUSTOM_LEVELS_DIR)
