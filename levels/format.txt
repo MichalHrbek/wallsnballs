@@ -11,6 +11,17 @@
 ||||80|||||
 |||||||||
 |||||||||
+
+
+; Walls:
 ; 5 => health(5), type(0), orientation(0)
 ; 5,3 => health(5), type(3), orientation(0)
 ; 5,3,11 => health(5), type(3), orientation(11)
+
+
+; Exporting:
+; The data gets prepended with its sha1 hash and is then base64 encoded
+
+
+; Comments:
+; Lines starting with ';' get ignored

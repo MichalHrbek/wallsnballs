@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy86jscp34qbw"]
+[gd_scene load_steps=15 format=3 uid="uid://dy86jscp34qbw"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_q8fmx"]
 [ext_resource type="Script" path="res://scripts/ui/level_editor.gd" id="1_u4qq4"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_kxfvp"]
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="4_171m4"]
+[ext_resource type="Texture2D" uid="uid://jilguns04o8g" path="res://assets/icons/export.png" id="5_5pav7"]
 [ext_resource type="Texture2D" uid="uid://bx8pamutkpdmy" path="res://assets/icons/plus.png" id="5_aaujc"]
 [ext_resource type="Texture2D" uid="uid://cll2vgkqsfmus" path="res://assets/icons/save.png" id="5_bhbo2"]
 [ext_resource type="Texture2D" uid="uid://c3etqj4rti6vb" path="res://assets/icons/up.png" id="5_n4arx"]
 [ext_resource type="Texture2D" uid="uid://b2gw5qo7ia7a2" path="res://assets/icons/trashcanOpen.png" id="6_3as1b"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="6_3p7cu"]
+[ext_resource type="Script" path="res://scripts/ui/level_export.gd" id="6_6a8m8"]
 [ext_resource type="Texture2D" uid="uid://cvkhr4cwlaat6" path="res://assets/icons/minus.png" id="6_t5gso"]
 [ext_resource type="PackedScene" uid="uid://bswmhrvghcrj4" path="res://scenes/ui/orientation_select.tscn" id="7_uehy5"]
 [ext_resource type="PackedScene" uid="uid://b02r6574rp0fy" path="res://scenes/ui/type_select.tscn" id="8_87ve6"]
@@ -119,9 +121,23 @@ size_flags_vertical = 4
 layout_mode = 2
 confirm = true
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="ExportButton" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
+icon = ExtResource("5_5pav7")
+
+[node name="PopupPanel" type="PopupPanel" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton"]
+initial_position = 2
+size = Vector2i(162, 100)
+borderless = false
+
+[node name="Button" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel" node_paths=PackedStringArray("level_editor")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 158.0
+offset_bottom = 96.0
+text = "Copy level code"
+script = ExtResource("6_6a8m8")
+level_editor = NodePath("../../../../../../../..")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -215,12 +231,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="OrientationSelect" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("7_uehy5")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-disabled = true
-
 [node name="TypeSelect" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("8_87ve6")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -237,6 +247,15 @@ rounded = true
 editable = false
 suffix = "hp"
 
+[node name="OrientationSelect" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("7_uehy5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel" method="set_visible" binds= [true]]
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel/Button" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel" method="hide"]
+[connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel/Button" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel/Button" method="export_into_clipboard"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5/Delete" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5/Delete/DeleteDialog" method="set_visible" binds= [true]]
 [connection signal="confirmed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer5/Delete/DeleteDialog" to="." method="_on_delete_dialog_confirmed"]
@@ -244,6 +263,6 @@ suffix = "hp"
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer2/Down" to="." method="_move" binds= [1]]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer/Remove" to="." method="_on_remove_pressed"]
-[connection signal="item_selected" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/OrientationSelect" to="." method="_on_orientation_select_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/TypeSelect" to="." method="_on_type_select_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/Health" to="." method="_on_health_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3/OrientationSelect" to="." method="_on_orientation_select_item_selected"]

@@ -12,7 +12,7 @@ var file_path: String
 #  0  1  2  3  4  5
 
 static func parse_format(data: String, path: String = "") -> LevelRes:
-	var level: LevelRes = LevelRes.new()
+	var level = LevelRes.new()
 	if path:
 		level.file_path = path
 	var lines: Array[String] = []
@@ -55,3 +55,19 @@ func export_format() -> String:
 				data += "|"
 		data += "\n"
 	return data
+
+func export_share() -> String:
+	var data = export_format()
+	data = data.sha1_text() + "\n" + data
+	return Marshalls.utf8_to_base64(data)
+
+static func import_share(data: String) -> LevelRes:
+	var decoded = Marshalls.base64_to_utf8(data)
+	decoded.sha1_text()
+	var check = decoded.substr(0,40)
+	var level_data = decoded.substr(41)
+	print(check, " - ", level_data.sha1_text())
+	if check == level_data.sha1_text():
+		return parse_format(decoded.substr(41))
+	else:
+		return null

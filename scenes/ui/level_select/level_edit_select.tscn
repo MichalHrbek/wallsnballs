@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cutq80rp8oth"]
+[gd_scene load_steps=8 format=3 uid="uid://cutq80rp8oth"]
 
 [ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_0g65h"]
 [ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_kopnm"]
 [ext_resource type="PackedScene" uid="uid://dy86jscp34qbw" path="res://scenes/game/level_editor.tscn" id="3_an7pb"]
 [ext_resource type="Texture2D" uid="uid://bx8pamutkpdmy" path="res://assets/icons/plus.png" id="4_a2wu5"]
 [ext_resource type="Script" path="res://scenes/ui/level_select/edit_new_level_button.gd" id="5_npnft"]
+[ext_resource type="Texture2D" uid="uid://cde6ka1dqjs1g" path="res://assets/icons/import.png" id="6_0856u"]
+[ext_resource type="Script" path="res://scripts/ui/level_import.gd" id="7_xawq7"]
 
 [node name="LevelSelect" instance=ExtResource("1_0g65h")]
 
@@ -19,13 +21,29 @@ level_dir = "user://levels/"
 level_scene = ExtResource("3_an7pb")
 metadata/_tab_index = 0
 
-[node name="EditNewLevelButton" type="Button" parent="." index="2"]
-layout_mode = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="2"]
+layout_mode = 1
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 63.0
 offset_bottom = 63.0
+
+[node name="EditNewLevelButton" type="Button" parent="HBoxContainer" index="0"]
+layout_mode = 2
 icon = ExtResource("4_a2wu5")
 script = ExtResource("5_npnft")
 
-[connection signal="pressed" from="EditNewLevelButton" to="EditNewLevelButton" method="_on_pressed"]
+[node name="ImportLevelButton" type="Button" parent="HBoxContainer" index="1"]
+layout_mode = 2
+icon = ExtResource("6_0856u")
+script = ExtResource("7_xawq7")
+
+[node name="AcceptDialog" type="AcceptDialog" parent="HBoxContainer/ImportLevelButton" index="0"]
+title = "Error"
+initial_position = 2
+size = Vector2i(196, 124)
+dialog_text = "The level data is not valid"
+
+[connection signal="pressed" from="HBoxContainer/EditNewLevelButton" to="HBoxContainer/EditNewLevelButton" method="_on_pressed"]
+[connection signal="invalid_data" from="HBoxContainer/ImportLevelButton" to="HBoxContainer/ImportLevelButton/AcceptDialog" method="set_visible" binds= [true]]
+[connection signal="pressed" from="HBoxContainer/ImportLevelButton" to="HBoxContainer/ImportLevelButton" method="import_from_clipboard"]

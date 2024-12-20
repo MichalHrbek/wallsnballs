@@ -1,3 +1,4 @@
+class_name LevelEditor
 extends Control
 
 @onready var level = %Level
