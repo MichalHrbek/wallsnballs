@@ -20,5 +20,9 @@ func _spawn_row(row_index:int):
 		_spawn_wall(x,row_index,level_res.walls[index])
 
 func _check_win():
-	if (walls.count(null) == len(walls)) and _row >= level_res.height:
-		status = GameStatus.WON
+	if _row < level_res.height:
+		return
+	for i in walls:
+		if i is WallDefault:
+			return
+	status = GameStatus.WON

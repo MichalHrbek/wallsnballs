@@ -71,14 +71,14 @@ func _spawn_wall(x:int, y:int, wall: WallRes) -> int:
 	return -1
 
 func _check_win():
-	if walls.count(null) == len(walls):
-		print("YOU WON")
-		status = GameStatus.WON
+	for i in walls:
+		if i is WallDefault:
+			return
+	status = GameStatus.WON
 
 func _check_loss():
 	for i in _lose_trigger.get_overlapping_bodies():
-		if i is Wall:
-			print("YOU LOST")
+		if i is WallDefault:
 			status = GameStatus.LOST
 			return
 
