@@ -11,7 +11,7 @@ A breakout-like game inspired by [Bricks n Balls](https://play.google.com/store/
 ### To Do
 - Improve `level_select.gd` to not load every single level into memory
 - Add new levels
-- Remake physics system (ideally with Jolt in Godot 4.4)
+- Remake physics system (ideally with the godot physics nodes)
 - Variable level width
 ### Credits
 - Most of the art is from kenney.nl (CC0)
