@@ -2,6 +2,7 @@ class_name Level extends Node2D
 
 signal round_ended
 signal game_ended(status: GameStatus)
+signal score_changed(new_score: int)
 
 @export var ball_spawner: BallSpawner
 @export var screen_size: Vector2 = Vector2(720,936)
@@ -16,6 +17,7 @@ var walls: Array[Wall] = []
 var _tween: Tween
 var _row = 0
 var width: int = 10
+var score: int = 0
 
 @onready var _lose_trigger: Area2D = $LoseTrigger
 
@@ -63,7 +65,7 @@ func _spawn_wall(x:int, y:int, wall: WallRes) -> int:
 			node.position += Vector2(Wall.SIZE*(x+0.5),Wall.SIZE*((-y-1)+0.5))
 			node.orientation = wall.orientation
 			walls.append(node)
-			node.destroyed.connect(_on_wall_destroyed.bind(node,len(walls)-1))
+			node.destroyed.connect(_on_wall_destroyed.bind(node, len(walls)-1, node.health))
 			return len(walls)-1
 	return -1
 
@@ -79,8 +81,11 @@ func _check_loss():
 			status = GameStatus.LOST
 			return
 
-func _on_wall_destroyed(_wall: Wall, index: int):
+func _on_wall_destroyed(wall: Wall, index: int, og_health: int):
 	walls[index] = null
+	if wall is WallDefault:
+		score += og_health
+		score_changed.emit(score)
 
 func next_round():
 	_spawn_row(_row)

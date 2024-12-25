@@ -1,12 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxstx0n0efcxm"]
+[gd_scene load_steps=12 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_ennut"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_jnnx7"]
+[ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="1_jxu6f"]
+[ext_resource type="AnimationLibrary" uid="uid://clxfsv8bci26j" path="res://animations/ui.tres" id="1_ni2an"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="2_peftv"]
 [ext_resource type="Script" path="res://scripts/ui/game_over_dialog.gd" id="3_fu1a8"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_wb8a3"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="5_atbhd"]
 [ext_resource type="Texture2D" uid="uid://ove5ktpl6peg" path="res://assets/icons/fastForward.png" id="6_gm6fl"]
+
+[sub_resource type="Animation" id="Animation_nmwy0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tdqy"]
+_data = {
+"RESET": SubResource("Animation_nmwy0")
+}
 
 [node name="GameTemplate" type="Node2D"]
 
@@ -48,6 +70,32 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
+
+[node name="Control" type="Control" parent="GameLayer/VBoxContainer/TopBar/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="CenterContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jxu6f")
+
+[node name="Label" type="Label" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/Control/Score"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/Control/Score"]
+libraries = {
+"": SubResource("AnimationLibrary_2tdqy"),
+"ui": ExtResource("1_ni2an")
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer"]
 layout_mode = 2
@@ -180,6 +228,7 @@ icon_alignment = 1
 [connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/LoseDialog" method="try_again"]
 [connection signal="canceled" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="try_again"]
 [connection signal="confirmed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/WinDialog" method="leave"]
+[connection signal="score_changed" from="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/Level" to="GameLayer/VBoxContainer/TopBar/MarginContainer/Control/Score" method="set_score"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game/BallSpawner" method="recall"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer/RecallButton" method="release_focus"]
 [connection signal="pressed" from="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" to="GameLayer/VBoxContainer/BottomBar/HBoxContainer/MarginContainer2/FastForwardButton" method="release_focus"]
