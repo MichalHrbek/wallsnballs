@@ -18,6 +18,7 @@ current_tab = 0
 layout_mode = 2
 allow_search = false
 script = ExtResource("2_kopnm")
+level_dir = "user://levels/"
 level_scene = ExtResource("3_an7pb")
 metadata/_tab_index = 0
 
