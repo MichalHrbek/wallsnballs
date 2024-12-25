@@ -78,7 +78,11 @@ func _add_wall(x,y,res:WallRes) -> int:
 
 func write_to_res():
 	level_res.balls = int(_balls.value)
-	level_res.name = _name.text
+	
+	if _name.text:
+		level_res.name = _name.text
+	else:
+		level_res.name = "NO NAME"
 	
 	var min_y = 0
 	var max_y = 0
