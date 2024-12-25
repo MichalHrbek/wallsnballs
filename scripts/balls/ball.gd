@@ -18,7 +18,9 @@ func _physics_process(delta):
 		var result = space_state.intersect_ray(query)
 		if result and result.collider is Wall and result.collider.hit(self):
 			if result.normal == Vector2.ZERO:
-				print_debug("0,0 normal")
+				print_debug("0,0 normal; pos = ", global_position)
+				if sender is BallSpawner: # Temporary fix for balls getting stuck
+					sender.on_return_ball(self)
 			else:
 				global_position = lerp(global_position, result.position, (1.0-(0.02*ff_ratio))) # :( Close enough
 				direction = direction.bounce(result.normal)
