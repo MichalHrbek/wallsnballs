@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dy86jscp34qbw"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_q8fmx"]
-[ext_resource type="Script" path="res://scripts/ui/level_editor.gd" id="1_u4qq4"]
+[ext_resource type="Script" uid="uid://bqfpv7lvi223s" path="res://scripts/game_manager.gd" id="1_q8fmx"]
+[ext_resource type="Script" uid="uid://do1imf2grlbsm" path="res://scripts/ui/level_editor.gd" id="1_u4qq4"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_kxfvp"]
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="4_171m4"]
 [ext_resource type="Texture2D" uid="uid://jilguns04o8g" path="res://assets/icons/export.png" id="5_5pav7"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c3etqj4rti6vb" path="res://assets/icons/up.png" id="5_n4arx"]
 [ext_resource type="Texture2D" uid="uid://b2gw5qo7ia7a2" path="res://assets/icons/trashcanOpen.png" id="6_3as1b"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="6_3p7cu"]
-[ext_resource type="Script" path="res://scripts/ui/level_export.gd" id="6_6a8m8"]
+[ext_resource type="Script" uid="uid://duuxnxatpwvb3" path="res://scripts/ui/level_export.gd" id="6_6a8m8"]
 [ext_resource type="Texture2D" uid="uid://cvkhr4cwlaat6" path="res://assets/icons/minus.png" id="6_t5gso"]
 [ext_resource type="PackedScene" uid="uid://bswmhrvghcrj4" path="res://scenes/ui/orientation_select.tscn" id="7_uehy5"]
 [ext_resource type="PackedScene" uid="uid://b02r6574rp0fy" path="res://scenes/ui/type_select.tscn" id="8_87ve6"]
@@ -253,6 +253,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 disabled = true
+popup/item_0/id = 0
 
 [node name="Health" type="SpinBox" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
 unique_name_in_owner = true
@@ -269,6 +270,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 disabled = true
+popup/item_0/id = 0
 
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel" method="set_visible" binds= [true]]
 [connection signal="pressed" from="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel/Button" to="VBoxContainer/BottomBar/MarginContainer/HBoxContainer/HBoxContainer/ExportButton/PopupPanel" method="hide"]

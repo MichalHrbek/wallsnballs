@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drwkq2djkpay2"]
 
 [ext_resource type="PackedScene" uid="uid://dle7lmca52cus" path="res://scenes/walls/wall_default.tscn" id="1_gypwk"]
-[ext_resource type="Script" path="res://scripts/walls/wall_slanted.gd" id="1_hw216"]
+[ext_resource type="Script" uid="uid://eflgtikyhicb" path="res://scripts/walls/wall_slanted.gd" id="1_hw216"]
 
 [node name="WallSlanted" instance=ExtResource("1_gypwk")]
 script = ExtResource("1_hw216")

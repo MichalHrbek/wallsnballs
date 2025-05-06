@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dle7lmca52cus"]
 
-[ext_resource type="Script" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
+[ext_resource type="Script" uid="uid://bylae27ny0flj" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 
@@ -21,7 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7fleg"]
 _data = {
-"RESET": SubResource("Animation_s0buq")
+&"RESET": SubResource("Animation_s0buq")
 }
 
 [sub_resource type="Animation" id="Animation_1ifnt"]
@@ -42,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fktsc"]
 _data = {
-"hit_effect": SubResource("Animation_1ifnt")
+&"hit_effect": SubResource("Animation_1ifnt")
 }
 
 [node name="Wall" type="CharacterBody2D"]

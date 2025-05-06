@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d231hafnujptw"]
 
 [ext_resource type="PackedScene" uid="uid://bwn74bu06iov1" path="res://scenes/walls/wall_circular.tscn" id="1_dh8rg"]
-[ext_resource type="Script" path="res://scripts/walls/wall_laser.gd" id="1_fewbk"]
+[ext_resource type="Script" uid="uid://byjyn8bxnckbj" path="res://scripts/walls/wall_laser.gd" id="1_fewbk"]
 [ext_resource type="PackedScene" uid="uid://cc6lmqg6t87xd" path="res://scenes/walls/directionals/directional_laser.tscn" id="4_arg04"]
 
 [node name="WallLaser" instance=ExtResource("1_dh8rg")]

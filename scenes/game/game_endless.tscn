@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg2hpjblc4id0"]
 
 [ext_resource type="PackedScene" uid="uid://cxstx0n0efcxm" path="res://scenes/game/game_template.tscn" id="1_yh818"]
-[ext_resource type="Script" path="res://scripts/level_endless.gd" id="2_iynej"]
+[ext_resource type="Script" uid="uid://b4tp7a62jil84" path="res://scripts/level_endless.gd" id="2_iynej"]
 
 [sub_resource type="Curve" id="Curve_an7sq"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]

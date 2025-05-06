@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cxstx0n0efcxm"]
 
 [ext_resource type="PackedScene" uid="uid://cotyev0pavuix" path="res://scenes/ui/go_home_button.tscn" id="1_ennut"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_jnnx7"]
-[ext_resource type="Script" path="res://scripts/ui/score_label.gd" id="1_jxu6f"]
+[ext_resource type="Script" uid="uid://bqfpv7lvi223s" path="res://scripts/game_manager.gd" id="1_jnnx7"]
+[ext_resource type="Script" uid="uid://c2v2ocjpu7orf" path="res://scripts/ui/score_label.gd" id="1_jxu6f"]
 [ext_resource type="AnimationLibrary" uid="uid://clxfsv8bci26j" path="res://animations/ui.tres" id="1_ni2an"]
 [ext_resource type="PackedScene" uid="uid://udh5o1p8l33m" path="res://scenes/balls/ball_spawner.tscn" id="2_peftv"]
-[ext_resource type="Script" path="res://scripts/ui/game_over_dialog.gd" id="3_fu1a8"]
+[ext_resource type="Script" uid="uid://buls0v3ht1yrq" path="res://scripts/ui/game_over_dialog.gd" id="3_fu1a8"]
 [ext_resource type="PackedScene" uid="uid://csaksgm2iybd6" path="res://scenes/level.tscn" id="3_wb8a3"]
 [ext_resource type="Texture2D" uid="uid://dw8y3q7x36vjn" path="res://assets/icons/down.png" id="5_atbhd"]
 [ext_resource type="Texture2D" uid="uid://ove5ktpl6peg" path="res://assets/icons/fastForward.png" id="6_gm6fl"]
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2tdqy"]
 _data = {
-"RESET": SubResource("Animation_nmwy0")
+&"RESET": SubResource("Animation_nmwy0")
 }
 
 [node name="GameTemplate" type="Node2D"]
@@ -93,8 +93,8 @@ horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer/Control/Score"]
 libraries = {
-"": SubResource("AnimationLibrary_2tdqy"),
-"ui": ExtResource("1_ni2an")
+&"": SubResource("AnimationLibrary_2tdqy"),
+&"ui": ExtResource("1_ni2an")
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/VBoxContainer/TopBar/MarginContainer"]

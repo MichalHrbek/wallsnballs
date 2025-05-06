@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://udh5o1p8l33m"]
 
-[ext_resource type="Script" path="res://scripts/balls/ball_spawner.gd" id="1_7c7c8"]
+[ext_resource type="Script" uid="uid://mxjg5njs0xh2" path="res://scripts/balls/ball_spawner.gd" id="1_7c7c8"]
 [ext_resource type="PackedScene" uid="uid://drddx10tdx7vc" path="res://scenes/balls/ball.tscn" id="2_ntamy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j4otp"]

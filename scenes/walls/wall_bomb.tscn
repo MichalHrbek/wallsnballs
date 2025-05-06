@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dle7lmca52cus" path="res://scenes/walls/wall_default.tscn" id="1_2qli8"]
 [ext_resource type="Texture2D" uid="uid://cd7svyv82dlup" path="res://assets/game/bomb.svg" id="2_dyhoy"]
-[ext_resource type="Script" path="res://scripts/walls/wall_bomb.gd" id="2_qux0b"]
+[ext_resource type="Script" uid="uid://c82ajxu7jwhpf" path="res://scripts/walls/wall_bomb.gd" id="2_qux0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2whmi"]
 size = Vector2(144, 144)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cutq80rp8oth"]
 
 [ext_resource type="PackedScene" uid="uid://dh2oulc8yulwp" path="res://scenes/ui/level_select/level_select_template.tscn" id="1_0g65h"]
-[ext_resource type="Script" path="res://scripts/ui/level_select.gd" id="2_kopnm"]
+[ext_resource type="Script" uid="uid://dtsxqmlpknq01" path="res://scripts/ui/level_select.gd" id="2_kopnm"]
 [ext_resource type="PackedScene" uid="uid://dy86jscp34qbw" path="res://scenes/game/level_editor.tscn" id="3_an7pb"]
 [ext_resource type="Texture2D" uid="uid://bx8pamutkpdmy" path="res://assets/icons/plus.png" id="4_a2wu5"]
-[ext_resource type="Script" path="res://scenes/ui/level_select/edit_new_level_button.gd" id="5_npnft"]
+[ext_resource type="Script" uid="uid://om4cvbqxbwgn" path="res://scenes/ui/level_select/edit_new_level_button.gd" id="5_npnft"]
 [ext_resource type="Texture2D" uid="uid://cde6ka1dqjs1g" path="res://assets/icons/import.png" id="6_0856u"]
-[ext_resource type="Script" path="res://scripts/ui/level_import.gd" id="7_xawq7"]
+[ext_resource type="Script" uid="uid://bxb6bflnu64xm" path="res://scripts/ui/level_import.gd" id="7_xawq7"]
 [ext_resource type="Theme" uid="uid://b5rdw2src0k2l" path="res://assets/popup_theme.tres" id="8_01a8b"]
 
 [node name="LevelSelect" instance=ExtResource("1_0g65h")]
