@@ -9,6 +9,6 @@ point_count = 2
 
 [node name="GameEndless" instance=ExtResource("1_yh818")]
 
-[node name="Level" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" index="1"]
+[node name="Level" parent="GameLayer/VBoxContainer/HBoxContainer/GameArea/Game" index="3"]
 script = ExtResource("2_iynej")
 difficulty = SubResource("Curve_an7sq")

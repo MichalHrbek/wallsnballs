@@ -1,4 +1,4 @@
-class_name Wall extends PhysicsBody2D
+class_name Wall extends CollisionObject2D
 
 signal destroyed
 

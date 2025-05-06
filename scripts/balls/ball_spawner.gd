@@ -45,7 +45,7 @@ func _process(delta):
 			_deployed.append(ball)
 			add_child(ball)
 			timer -= wait_time
-			ball._rem = timer*ball.speed*_ff_ratio
+			ball.move_along(timer)
 		_update_label()
 
 func _update_aim_hint():

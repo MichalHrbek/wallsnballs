@@ -1,6 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dle7lmca52cus"]
+[gd_scene load_steps=8 format=3 uid="uid://dle7lmca52cus"]
 
 [ext_resource type="Script" uid="uid://bylae27ny0flj" path="res://scripts/walls/wall_default.gd" id="1_m0mka"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5s7ng"]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_npei6"]
 
@@ -45,9 +49,10 @@ _data = {
 &"hit_effect": SubResource("Animation_1ifnt")
 }
 
-[node name="Wall" type="CharacterBody2D"]
+[node name="Wall" type="StaticBody2D"]
 collision_mask = 3
 input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_5s7ng")
 script = ExtResource("1_m0mka")
 metadata/_edit_group_ = true
 
@@ -73,6 +78,6 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7fleg"),
-"walls": SubResource("AnimationLibrary_fktsc")
+&"": SubResource("AnimationLibrary_7fleg"),
+&"walls": SubResource("AnimationLibrary_fktsc")
 }
